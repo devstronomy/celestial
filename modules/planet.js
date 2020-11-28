@@ -7,18 +7,18 @@ class Planet {
   /**
    * Creates an instance of a planet.
    *
+   * @param name name of the planet
    * @param distanceAU average distance from the Sun in astronomical units.
    * @param radiusKm radius of the body in km.
    * @param orbitalPeriodDE orbital period in Earth days
-   * @param r red part
-   * @param g green part
-   * @param b blue part
+   * @param color the color in { r, g, b } shape.
    */
-  constructor(distanceAU, radiusKm, orbitalPeriodDE, r, g, b) {
+  constructor(name, distanceAU, radiusKm, orbitalPeriodDE, color) {
+    this.name = name;
     this.distanceAU = distanceAU;
     this.radiusKm = radiusKm;
     this.orbitalPeriodDE = orbitalPeriodDE;
-    this.color = { r, g, b }; // planet color
+    this.color = color;
 
     // Angular position. Set random initial angular position for a planet in radians.
     this.startTheta = randomFloat(TAU);

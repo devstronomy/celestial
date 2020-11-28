@@ -5,7 +5,8 @@ import C from "./config.js";
 
 class SolarSystem {
   constructor() {
-    this.planets = getPlanets();
+    // TODO: hide outer planets until having a meaningful way to display them. E.g., zooming.
+    this.planets = getPlanets().slice(0, 4);
     this.startMs = Date.now();
   }
 
