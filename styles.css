@@ -1,11 +1,27 @@
 html,
 body {
-  width: 100vh;
-  height: 100vh;
   margin: 0;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
 #canvas {
   width: 100vw;
   height: 100vh;
+}
+
+#textContainer {
+  position: fixed;
+  width: calc(100% - 26px);
+  text-align: center;
+  color: white;
+
+  padding: 6px;
+  background-color: #1e90ff6b;
+  border: #1e90ff6b 1px solid;
+  box-shadow: 0 0 4px #9ecaed;
+  margin: 6px;
+}
+
+#textContainer b {
+  color: #b2e7ff;
 }
