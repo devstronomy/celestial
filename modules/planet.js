@@ -1,7 +1,7 @@
-import { TAU, randomFloat } from "./math.js";
-import { stroke, fillRGB } from "./canvas.js";
-import { circle } from "./shapes.js";
+import { fillRGB, stroke } from "./canvas.js";
 import C from "./config.js";
+import { randomFloat, TAU } from "./math.js";
+import { circle } from "./shapes.js";
 
 class Planet {
   /**
@@ -26,21 +26,42 @@ class Planet {
     this.thetaRad = 0;
   }
 
+  scaledDistance() {
+    return this.distanceAU * C.planets.distanceFactor;
+  }
+
+  computeRadius() {
+    return this.radiusKm * C.planets.radiusScalingFactor;
+  }
+
   update(day) {
     const rawTheta = -(TAU / this.orbitalPeriodDE) * day;
     this.thetaRad = (this.startTheta + rawTheta * C.planets.speedFactor) % TAU;
   }
 
-  draw(ctx) {
+  drawBody(ctx) {
     ctx.save();
     ctx.beginPath();
     ctx.rotate(this.thetaRad);
-    ctx.translate(this.distanceAU * C.planets.distanceFactor, 0);
-    const r = this.radiusKm * C.planets.radiusScalingFactor;
-    circle(ctx, 0, 0, r);
+    ctx.translate(this.scaledDistance(), 0);
+    circle(ctx, 0, 0, this.computeRadius());
     fillRGB(ctx, this.color.r, this.color.g, this.color.b);
     stroke(ctx, "black");
     ctx.restore();
+  }
+
+  drawOrbit(ctx) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.setLineDash([5, 5]);
+    circle(ctx, 0, 0, this.scaledDistance());
+    stroke(ctx, "#444444");
+    ctx.restore();
+  }
+
+  draw(ctx) {
+    this.drawOrbit(ctx);
+    this.drawBody(ctx);
   }
 }
 
