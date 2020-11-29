@@ -1,7 +1,4 @@
-import { clear } from "./canvas.js";
 import SolarSystem from "./solarSytem.js";
-
-const FPS = 60;
 
 function startSimulation() {
   const canvas = document.getElementById("canvas");
@@ -33,7 +30,6 @@ function startSimulation() {
 
   function mainLoop() {
     resizeCanvas();
-    clear(canvasInfo);
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -41,13 +37,10 @@ function startSimulation() {
     ctx.translate(canvas.width / 2, canvas.height / 2);
     solarSystem.render(canvasInfo);
     ctx.restore();
+    requestAnimationFrame(mainLoop);
   }
 
-  setInterval(() => {
-    requestAnimationFrame(() => {
-      mainLoop();
-    });
-  }, 1000 / FPS);
+  mainLoop();
 }
 
 window.onload = startSimulation;
