@@ -4,17 +4,7 @@ body {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
-#canvas {
-  width: 100vw;
-  height: 100vh;
-}
-
-#textContainer {
-  position: fixed;
-  width: calc(100% - 26px);
-  text-align: center;
-  color: white;
-
+.box {
   padding: 6px;
   background-color: #1e90ff6b;
   border: #1e90ff6b 1px solid;
@@ -22,6 +12,25 @@ body {
   margin: 6px;
 }
 
-#textContainer b {
+#canvas {
+  width: 100vw;
+  height: 100vh;
+}
+
+#textContainer {
+  position: fixed;
+  width: calc(100%);
+  color: white;
+}
+
+b {
   color: #b2e7ff;
+}
+
+#header {
+  text-align: center;
+}
+
+#controls {
+  display: inline-block;
 }
