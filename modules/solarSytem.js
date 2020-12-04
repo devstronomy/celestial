@@ -19,11 +19,11 @@ class SolarSystem {
   }
 
   render({ ctx }) {
-    this.drawSun(ctx);
     this.planets.forEach((p) => {
       p.update((Date.now() - this.startMs) / 1000);
       p.draw(ctx);
     });
+    this.drawSun(ctx);
   }
 }
 
