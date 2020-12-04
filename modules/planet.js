@@ -12,18 +12,20 @@ class Planet {
    * @param radiusKm radius of the body in km.
    * @param orbitalPeriodDE orbital period in Earth days
    * @param color the color in { r, g, b } shape.
+   * @param statusEl used for displaying the planet information; can be undefined.
    */
-  constructor(name, distanceAU, radiusKm, orbitalPeriodDE, color) {
+  constructor(name, distanceAU, radiusKm, orbitalPeriodDE, color, statusEl) {
     this.name = name;
     this.distanceAU = distanceAU;
     this.radiusKm = radiusKm;
     this.orbitalPeriodDE = orbitalPeriodDE;
     this.color = color;
+    this.statusEl = statusEl;
 
     // Angular position. Set random initial angular position for a planet in radians.
-    this.startTheta = randomFloat(TAU);
-    // current theta in radians
-    this.thetaRad = 0;
+    this.initialMA = randomFloat(TAU);
+    // current mean anomaly in radians
+    this.totalMa = this.initialMA;
   }
 
   scaledDistance() {
@@ -35,14 +37,14 @@ class Planet {
   }
 
   update(day) {
-    const rawTheta = -(TAU / this.orbitalPeriodDE) * day;
-    this.thetaRad = (this.startTheta + rawTheta * C.planets.speedFactor) % TAU;
+    const ma = (TAU / this.orbitalPeriodDE) * day;
+    this.totalMa = (this.initialMA + ma * C.planets.speedFactor) % TAU;
   }
 
   drawBody(ctx) {
     ctx.save();
     ctx.beginPath();
-    ctx.rotate(this.thetaRad);
+    ctx.rotate(-this.totalMa);
     ctx.translate(this.scaledDistance(), 0);
     circle(ctx, 0, 0, this.computeRadius());
     fillRGB(ctx, this.color.r, this.color.g, this.color.b);
@@ -59,9 +61,17 @@ class Planet {
     ctx.restore();
   }
 
+  updateStatus() {
+    if (this.statusEl) {
+      const maDeg = ((this.totalMa * 360) / TAU).toFixed(0);
+      this.statusEl.innerHTML = `${this.name} mean anomaly: ${maDeg}&deg;`;
+    }
+  }
+
   draw(ctx) {
     this.drawOrbit(ctx);
     this.drawBody(ctx);
+    this.updateStatus();
   }
 }
 

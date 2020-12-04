@@ -13,12 +13,21 @@
   <body>
     <div id="textContainer">
       <div id="header" class="box">Simulation of the Solar System with <b>mean orbits</b></div>
-      <form id="controls" class="box">
-        <input type="radio" id="circular-orbit" name="simulation" value="Circular Orbits" checked />
-        <label for="circular-orbit">Circular Orbits</label><br />
-        <input id="elliptical-orbit" type="radio" name="simulation" value="Elliptical Orbits" />
-        <label for="elliptical-orbit">Elliptical Orbits</label>
-      </form>
+      <div id="content">
+        <form class="ib box">
+          <input
+            type="radio"
+            id="circular-orbit"
+            name="simulation"
+            value="Circular Orbits"
+            checked
+          />
+          <label for="circular-orbit">Circular Orbits</label><br />
+          <input id="elliptical-orbit" type="radio" name="simulation" value="Elliptical Orbits" />
+          <label for="elliptical-orbit">Elliptical Orbits</label>
+        </form>
+        <div id="statusContainer" class="ib boxPlain"><span id="status"></span></div>
+      </div>
     </div>
     <canvas id="canvas"></canvas>
   </body>

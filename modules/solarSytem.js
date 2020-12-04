@@ -3,6 +3,8 @@ import { getPlanets } from "./planets.js";
 import { circle } from "./shapes.js";
 import C from "./config.js";
 
+const SUN_RADIUS_KM = 695700;
+
 class SolarSystem {
   constructor() {
     // TODO: hide outer planets until having a meaningful way to display them. E.g., zooming.
@@ -11,8 +13,7 @@ class SolarSystem {
   }
 
   drawSun(ctx) {
-    const sunRadiusKm = 695700;
-    circle(ctx, 0, 0, sunRadiusKm * C.sun.radiusScalingFactor);
+    circle(ctx, 0, 0, SUN_RADIUS_KM * C.sun.radiusScalingFactor);
     fill(ctx, "yellow");
     stroke(ctx, "orange");
   }

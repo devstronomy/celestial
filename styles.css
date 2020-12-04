@@ -12,6 +12,11 @@ body {
   margin: 6px;
 }
 
+.boxPlain {
+  padding: 6px;
+  margin: 6px;
+}
+
 #canvas {
   width: 100vw;
   height: 100vh;
@@ -31,6 +36,10 @@ b {
   text-align: center;
 }
 
-#controls {
+#statusContainer {
+  vertical-align: top;
+}
+
+.ib {
   display: inline-block;
 }

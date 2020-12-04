@@ -29,10 +29,12 @@ function startSimulation() {
   const solarSystem = new SolarSystem();
 
   function mainLoop() {
+    // prepare canvas
     resizeCanvas();
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    // draw the solar system
     ctx.save();
     ctx.translate(canvas.width / 2, canvas.height / 2);
     solarSystem.render(canvasInfo);
