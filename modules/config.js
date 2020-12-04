@@ -1,6 +1,6 @@
 const Configuration = {
   planets: {
-    speedFactor: 10,
+    speedFactor: 3,
     distanceFactor: 300,
     radiusScalingFactor: 1 / 300,
   },

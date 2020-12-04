@@ -1,5 +1,7 @@
 import { fillRGB, stroke } from "./canvas.js";
+import { computeTrueAnomaly } from "./computations.js";
 import C from "./config.js";
+import { radToDeg } from "./math.js";
 import { randomFloat, TAU } from "./math.js";
 import { circle } from "./shapes.js";
 
@@ -11,19 +13,25 @@ class Planet {
    * @param distanceAU average distance from the Sun in astronomical units.
    * @param radiusKm radius of the body in km.
    * @param orbitalPeriodDE orbital period in Earth days
+   * @param orbitalEccentricity orbital eccentricity
    * @param color the color in { r, g, b } shape.
    * @param statusEl used for displaying the planet information; can be undefined.
    */
-  constructor(name, distanceAU, radiusKm, orbitalPeriodDE, color, statusEl) {
+  constructor(name, distanceAU, radiusKm, orbitalPeriodDE, orbitalEccentricity, color, statusEl) {
     this.name = name;
     this.distanceAU = distanceAU;
     this.radiusKm = radiusKm;
     this.orbitalPeriodDE = orbitalPeriodDE;
+    this.orbitalEccentricity = orbitalEccentricity;
     this.color = color;
     this.statusEl = statusEl;
 
     // Angular position. Set random initial angular position for a planet in radians.
-    this.initialMA = randomFloat(TAU);
+    if (statusEl) {
+      this.initialMA = 0;
+    } else {
+      this.initialMA = randomFloat(TAU);
+    }
     // current mean anomaly in radians
     this.totalMa = this.initialMA;
   }
@@ -63,8 +71,10 @@ class Planet {
 
   updateStatus() {
     if (this.statusEl) {
-      const maDeg = ((this.totalMa * 360) / TAU).toFixed(0);
-      this.statusEl.innerHTML = `${this.name} mean anomaly: ${maDeg}&deg;`;
+      const maDeg = radToDeg(this.totalMa).toFixed(0);
+      const ta = radToDeg(computeTrueAnomaly(this.totalMa, this.orbitalEccentricity)).toFixed(0);
+      this.statusEl.innerHTML =
+        `${this.name} anomalies: mean = ${maDeg}&deg;` + `, true = ${ta}&deg;`;
     }
   }
 

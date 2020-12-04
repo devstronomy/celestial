@@ -2,4 +2,6 @@ const TAU = 2 * Math.PI;
 
 const randomFloat = (upperBound) => Math.random() * upperBound;
 
-export { TAU, randomFloat };
+const radToDeg = (rad) => (rad * 180) / Math.PI;
+
+export { TAU, randomFloat, radToDeg };
