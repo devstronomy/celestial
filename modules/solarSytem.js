@@ -5,6 +5,12 @@ import C from "./config.js";
 
 const SUN_RADIUS_KM = 695700;
 
+function drawSun(ctx) {
+  circle(ctx, 0, 0, SUN_RADIUS_KM * C.sun.radiusScalingFactor);
+  fill(ctx, "yellow");
+  stroke(ctx, "orange");
+}
+
 class SolarSystem {
   constructor() {
     // TODO: hide outer planets until having a meaningful way to display them. E.g., zooming.
@@ -12,19 +18,15 @@ class SolarSystem {
     this.startMs = Date.now();
   }
 
-  drawSun(ctx) {
-    circle(ctx, 0, 0, SUN_RADIUS_KM * C.sun.radiusScalingFactor);
-    fill(ctx, "yellow");
-    stroke(ctx, "orange");
-  }
-
   render({ ctx }) {
     this.planets.forEach((p) => {
       p.update((Date.now() - this.startMs) / 1000);
       p.draw(ctx);
     });
-    this.drawSun(ctx);
+    drawSun(ctx);
   }
 }
 
 export default SolarSystem;
+
+export { drawSun };

@@ -38,6 +38,7 @@ b {
 
 #statusContainer {
   vertical-align: top;
+  font-family: monospace;
 }
 
 .ib {

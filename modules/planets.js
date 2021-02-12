@@ -20,16 +20,21 @@ const colors = {
   Pluto: color(180, 180, 180),
 };
 
+// convert from 10^6 km to AUs.
+const fromMkmToAu = (mKm) => (mKm * 10 ** 9) / AU;
+
 const planets = rawPlanets.map(
   (p) =>
     new Planet(
       p.name,
-      (p.distanceFromSun * 10 ** 9) / AU, // convert from 10^6 km to AUs.
+      fromMkmToAu(p.distanceFromSun),
       p.diameter / 2,
       p.orbitalPeriod,
+      fromMkmToAu(p.aphelion),
+      fromMkmToAu(p.perihelion),
       p.orbitalEccentricity,
       colors[p.name],
-      p.name === statusPlanet ? statusEl : undefined // Ugly hardcoded. But for now OK.
+      p.name === statusPlanet ? statusEl : undefined // TODO: Ugly hardcoded. But for now OK.
     )
 );
 

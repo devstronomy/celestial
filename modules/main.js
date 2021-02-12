@@ -1,4 +1,4 @@
-import SolarSystem from "./solarSytem.js";
+import OrbitalElements from "./orbitalElements.js";
 
 function startSimulation() {
   const canvas = document.getElementById("canvas");
@@ -26,7 +26,8 @@ function startSimulation() {
     }
   };
 
-  const solarSystem = new SolarSystem();
+  // const scene = new SolarSystem();
+  const scene = new OrbitalElements();
 
   function mainLoop() {
     // prepare canvas
@@ -37,7 +38,7 @@ function startSimulation() {
     // draw the solar system
     ctx.save();
     ctx.translate(canvas.width / 2, canvas.height / 2);
-    solarSystem.render(canvasInfo);
+    scene.render(canvasInfo);
     ctx.restore();
     requestAnimationFrame(mainLoop);
   }
