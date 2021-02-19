@@ -4,10 +4,10 @@ const colors = {
   dashedLine: "#444444",
 };
 
-function line(ctx, x1, y1, x2, y2, color) {
+function line(ctx, x1, y1, x2, y2, color, width = 3) {
   ctx.save();
   ctx.beginPath();
-  ctx.lineWidth = 3;
+  ctx.lineWidth = width;
   ctx.moveTo(x1, y1);
   ctx.lineTo(x2, y2);
   stroke(ctx, color);
