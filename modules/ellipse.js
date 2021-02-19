@@ -53,6 +53,7 @@ class Ellipse {
 
     // foci
     circle(ctx, -this.le, 0, 5);
+    fill(ctx, colors.ink);
     circle(ctx, this.le, 0, 5);
     fill(ctx, colors.ink);
 
