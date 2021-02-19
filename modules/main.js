@@ -1,3 +1,4 @@
+import { getStatusElement, resetStatusElement } from "./dom.js";
 import Ellipse from "./ellipse.js";
 import { checkDefined } from "./preconditions.js";
 import SolarSystem from "./solarSytem.js";
@@ -16,12 +17,13 @@ let currentScene;
 function getScene() {
   const selectedSceneType = getSelectedSceneType();
   if (selectedSceneType !== currentSceneType) {
+    resetStatusElement();
     currentSceneType = selectedSceneType;
     currentScene =
       selectedSceneType === "mean-orbits"
         ? new SolarSystem()
         : selectedSceneType === "ellipse"
-        ? new Ellipse()
+        ? new Ellipse(getStatusElement())
         : undefined;
     checkDefined(currentScene, `Unknown scene type: ${selectedSceneType}`);
   }

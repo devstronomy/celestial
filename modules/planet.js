@@ -1,7 +1,7 @@
 import { fillRGB, stroke } from "./canvas.js";
 import C from "./config.js";
+import { circle, colors } from "./drawing.js";
 import { randomFloat, TAU } from "./math.js";
-import { circle } from "./shapes.js";
 
 class Planet {
   /**
@@ -55,7 +55,7 @@ class Planet {
     ctx.beginPath();
     ctx.setLineDash([5, 5]);
     circle(ctx, 0, 0, this.scaledDistance());
-    stroke(ctx, "#444444");
+    stroke(ctx, colors.dashedLine);
     ctx.restore();
   }
 

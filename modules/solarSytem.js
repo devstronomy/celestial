@@ -1,7 +1,7 @@
 import { fill, stroke } from "./canvas.js";
-import { getPlanets } from "./planets.js";
-import { circle } from "./shapes.js";
 import C from "./config.js";
+import { circle } from "./drawing.js";
+import { getPlanets } from "./planets.js";
 
 class SolarSystem {
   constructor() {
