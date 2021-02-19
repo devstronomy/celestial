@@ -2,6 +2,25 @@ html,
 body {
   margin: 0;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  background-color: black;
+}
+
+#loading-indicator {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(51, 51, 51, 0.7);
+  z-index: 10;
+
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 #canvas {
@@ -11,10 +30,20 @@ body {
 
 #textContainer {
   position: fixed;
-  width: calc(100% - 26px);
-  text-align: center;
+  width: calc(100%);
   color: white;
+}
 
+#header {
+  text-align: center;
+}
+
+#statusContainer {
+  vertical-align: top;
+  font-family: monospace;
+}
+
+.box {
   padding: 6px;
   background-color: #1e90ff6b;
   border: #1e90ff6b 1px solid;
@@ -22,6 +51,15 @@ body {
   margin: 6px;
 }
 
-#textContainer b {
+.boxPlain {
+  padding: 6px;
+  margin: 6px;
+}
+
+b {
   color: #b2e7ff;
+}
+
+.ib {
+  display: inline-block;
 }

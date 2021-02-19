@@ -6,16 +6,29 @@
     <title>Computations Playground</title>
     <link href="styles.css" rel="stylesheet" />
     <!-- The same font as in the Devstronomy. -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
     <script type="module" src="modules/main.js"></script>
   </head>
 
   <body>
+    <div id="loading-indicator">Loading...</div>
     <div id="textContainer">
-      Simulation of the Solar System with <b>mean orbits</b>
+      <div id="header" class="box">
+        Simulation of the Solar System with
+        <b>mean orbits</b>
+      </div>
+      <div id="content">
+        <form class="ib box">
+          <input type="radio" id="ellipse" name="scene-type" value="ellipse" />
+          <label for="ellipse">Ellipse</label><br />
+
+          <input id="mean-orbits" type="radio" name="scene-type" value="mean-orbits" checked />
+          <label for="mean-orbits">Circular Orbits</label>
+        </form>
+        <div id="statusContainer" class="ib boxPlain">
+          <span id="status"></span>
+        </div>
+      </div>
     </div>
     <canvas id="canvas"></canvas>
   </body>

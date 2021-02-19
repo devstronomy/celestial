@@ -1,4 +1,32 @@
+import Ellipse from "./ellipse.js";
+import { checkDefined } from "./preconditions.js";
 import SolarSystem from "./solarSytem.js";
+
+function removeLoadingIndicator() {
+  document.getElementById("loading-indicator").style.display = "none";
+}
+
+function getSelectedSceneType() {
+  return document.querySelector('input[name="scene-type"]:checked').value;
+}
+
+let currentSceneType;
+let currentScene;
+
+function getScene() {
+  const selectedSceneType = getSelectedSceneType();
+  if (selectedSceneType !== currentSceneType) {
+    currentSceneType = selectedSceneType;
+    currentScene =
+      selectedSceneType === "mean-orbits"
+        ? new SolarSystem()
+        : selectedSceneType === "ellipse"
+        ? new Ellipse()
+        : undefined;
+    checkDefined(currentScene, `Unknown scene type: ${selectedSceneType}`);
+  }
+  return currentScene;
+}
 
 function startSimulation() {
   const canvas = document.getElementById("canvas");
@@ -26,20 +54,21 @@ function startSimulation() {
     }
   };
 
-  const solarSystem = new SolarSystem();
-
   function mainLoop() {
+    // prepare canvas
     resizeCanvas();
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    // draw the scene
     ctx.save();
     ctx.translate(canvas.width / 2, canvas.height / 2);
-    solarSystem.render(canvasInfo);
+    getScene().render(canvasInfo);
     ctx.restore();
     requestAnimationFrame(mainLoop);
   }
 
+  removeLoadingIndicator();
   mainLoop();
 }
 
