@@ -1,6 +1,5 @@
-import { getStatusElement, resetStatusElement } from "./dom.js";
+import { getHeaderElement, getStatusElement, resetStatusElement } from "./dom.js";
 import Ellipse from "./ellipse.js";
-import { checkDefined } from "./preconditions.js";
 import SolarSystem from "./solarSytem.js";
 
 function removeLoadingIndicator() {
@@ -19,13 +18,15 @@ function getScene() {
   if (selectedSceneType !== currentSceneType) {
     resetStatusElement();
     currentSceneType = selectedSceneType;
-    currentScene =
-      selectedSceneType === "mean-orbits"
-        ? new SolarSystem()
-        : selectedSceneType === "ellipse"
-        ? new Ellipse(getStatusElement())
-        : undefined;
-    checkDefined(currentScene, `Unknown scene type: ${selectedSceneType}`);
+    if (selectedSceneType === "mean-orbits") {
+      getHeaderElement().innerHTML = "Simulation of the Solar System with <b>mean orbits</b>";
+      currentScene = new SolarSystem();
+    } else if (selectedSceneType === "ellipse") {
+      getHeaderElement().innerHTML = "Basic <b>Ellipse</b> Terminology";
+      currentScene = new Ellipse(getStatusElement());
+    } else {
+      throw new Error(`Unknown scene type: ${selectedSceneType}`);
+    }
   }
   return currentScene;
 }
