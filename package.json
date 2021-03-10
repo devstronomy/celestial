@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "name": "celestial",
+  "version": "0.0.1",
+  "description": "Playground so far.",
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devstronomy/celestial.git"
+  },
+  "author": "Martin Krauskopf <martin.krauskopf@gmail.com> (https://devstronomy.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devstronomy/celestial/issues"
+  },
+  "homepage": "https://github.com/devstronomy/celestial#readme",
+  "devDependencies": {
+    "css-loader": "5.1.1",
+    "html-webpack-plugin": "5.3.1",
+    "style-loader": "2.0.0",
+    "webpack": "5.24.4",
+    "webpack-cli": "4.5.0"
+  }
+}
