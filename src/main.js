@@ -1,3 +1,4 @@
+import "./style.css";
 import { getHeaderElement, getStatusElement, resetStatusElement } from "./dom.js";
 import Ellipse from "./ellipse.js";
 import SolarSystem from "./solarSytem.js";
