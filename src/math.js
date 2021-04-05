@@ -1,5 +1,5 @@
-const TAU = 2 * Math.PI;
+const TAU = 2 * Math.PI
 
-const randomFloat = (upperBound) => Math.random() * upperBound;
+const randomFloat = (upperBound) => Math.random() * upperBound
 
-export { TAU, randomFloat };
+export { TAU, randomFloat }

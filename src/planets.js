@@ -1,9 +1,9 @@
-import { AU } from "./constants.js";
-import Planet from "./planet.js";
+import { AU } from './constants.js'
+import Planet from './planet.js'
 
-import rawPlanets from "../data/planets.js";
+import rawPlanets from '../data/planets.js'
 
-const color = (r, g, b) => ({ r, g, b });
+const color = (r, g, b) => ({ r, g, b })
 
 const colors = {
   Mercury: color(224, 194, 150),
@@ -15,7 +15,7 @@ const colors = {
   Uranus: color(180, 180, 180),
   Neptune: color(180, 180, 180),
   Pluto: color(180, 180, 180),
-};
+}
 
 const planets = rawPlanets.map(
   (p) =>
@@ -26,8 +26,8 @@ const planets = rawPlanets.map(
       p.orbitalPeriod,
       colors[p.name]
     )
-);
+)
 
-const getPlanets = () => planets;
+const getPlanets = () => planets
 
-export { getPlanets };
+export { getPlanets }

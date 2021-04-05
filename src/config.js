@@ -7,6 +7,6 @@ const Configuration = {
   sun: {
     radiusScalingFactor: 1 / 20000, // Sun scaling factor to have not the Sun too big until solved more wisely.
   },
-};
+}
 
-export default Configuration;
+export default Configuration

@@ -1,9 +1,9 @@
 function delay(callback, ms) {
-  let timer = 0;
+  let timer = 0
   return () => {
-    clearTimeout(timer);
-    timer = setTimeout(callback, ms);
-  };
+    clearTimeout(timer)
+    timer = setTimeout(callback, ms)
+  }
 }
 
-export { delay };
+export { delay }

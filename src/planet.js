@@ -1,7 +1,7 @@
-import { fillRGB, stroke } from "./canvas.js";
-import C from "./config.js";
-import { circle, colors } from "./drawing.js";
-import { randomFloat, TAU } from "./math.js";
+import { fillRGB, stroke } from './canvas.js'
+import C from './config.js'
+import { circle, colors } from './drawing.js'
+import { randomFloat, TAU } from './math.js'
 
 class Planet {
   /**
@@ -14,55 +14,55 @@ class Planet {
    * @param color the color in { r, g, b } shape.
    */
   constructor(name, distanceAU, radiusKm, orbitalPeriodDE, color) {
-    this.name = name;
-    this.distanceAU = distanceAU;
-    this.radiusKm = radiusKm;
-    this.orbitalPeriodDE = orbitalPeriodDE;
-    this.color = color;
+    this.name = name
+    this.distanceAU = distanceAU
+    this.radiusKm = radiusKm
+    this.orbitalPeriodDE = orbitalPeriodDE
+    this.color = color
 
     // Angular position. Set random initial angular position for a planet in radians.
-    this.startTheta = randomFloat(TAU);
+    this.startTheta = randomFloat(TAU)
     // current theta in radians
-    this.thetaRad = 0;
+    this.thetaRad = 0
   }
 
   scaledDistance() {
-    return this.distanceAU * C.planets.distanceFactor;
+    return this.distanceAU * C.planets.distanceFactor
   }
 
   computeRadius() {
-    return this.radiusKm * C.planets.radiusScalingFactor;
+    return this.radiusKm * C.planets.radiusScalingFactor
   }
 
   update(day) {
-    const rawTheta = -(TAU / this.orbitalPeriodDE) * day;
-    this.thetaRad = (this.startTheta + rawTheta * C.planets.speedFactor) % TAU;
+    const rawTheta = -(TAU / this.orbitalPeriodDE) * day
+    this.thetaRad = (this.startTheta + rawTheta * C.planets.speedFactor) % TAU
   }
 
   drawBody(ctx) {
-    ctx.save();
-    ctx.beginPath();
-    ctx.rotate(this.thetaRad);
-    ctx.translate(this.scaledDistance(), 0);
-    circle(ctx, 0, 0, this.computeRadius());
-    fillRGB(ctx, this.color.r, this.color.g, this.color.b);
-    stroke(ctx, "black");
-    ctx.restore();
+    ctx.save()
+    ctx.beginPath()
+    ctx.rotate(this.thetaRad)
+    ctx.translate(this.scaledDistance(), 0)
+    circle(ctx, 0, 0, this.computeRadius())
+    fillRGB(ctx, this.color.r, this.color.g, this.color.b)
+    stroke(ctx, 'black')
+    ctx.restore()
   }
 
   drawOrbit(ctx) {
-    ctx.save();
-    ctx.beginPath();
-    ctx.setLineDash([5, 5]);
-    circle(ctx, 0, 0, this.scaledDistance());
-    stroke(ctx, colors.dashedLine);
-    ctx.restore();
+    ctx.save()
+    ctx.beginPath()
+    ctx.setLineDash([5, 5])
+    circle(ctx, 0, 0, this.scaledDistance())
+    stroke(ctx, colors.dashedLine)
+    ctx.restore()
   }
 
   draw(ctx) {
-    this.drawOrbit(ctx);
-    this.drawBody(ctx);
+    this.drawOrbit(ctx)
+    this.drawBody(ctx)
   }
 }
 
-export default Planet;
+export default Planet
