@@ -1,6 +1,8 @@
-import { fill, stroke } from './canvas.js'
-import { br, span } from './dom.js'
-import { circle, dashedLine, ellipse, line } from './drawing.js'
+import { fill, stroke } from './canvas'
+import { br, span } from './dom'
+import { circle, dashedLine, ellipse, line } from './drawing'
+import { CanvasInfo } from './types'
+import Scene from './scenes/scene'
 
 const colors = {
   ink: '#bbbbbb',
@@ -10,13 +12,19 @@ const colors = {
   orbitalEccentricity: 'magenta',
 }
 
-class Ellipse {
-  constructor(statusEl) {
+class Ellipse implements Scene {
+  statusEl: HTMLElement
+  a: number
+  b: number
+  le: number
+  oe: number
+
+  constructor(statusEl: HTMLElement) {
     this.statusEl = statusEl
-    this.a = undefined // semi-major axis
-    this.b = undefined // semi-minor axis
-    this.le = undefined // linear eccentricity (center to focus)
-    this.oe = undefined // orbital eccentricity
+    this.a = 0 // semi-major axis
+    this.b = 0 // semi-minor axis
+    this.le = 0 // linear eccentricity (center to focus)
+    this.oe = 0 // orbital eccentricity
   }
 
   updateStatus() {
@@ -30,7 +38,7 @@ class Ellipse {
       span(`orbital eccentricity: ${this.oe.toFixed(2)}`, colors.orbitalEccentricity)
   }
 
-  render({ ctx, width, height }) {
+  render({ ctx, width, height }: CanvasInfo) {
     this.b = Math.min((width * 0.8) / 3, height / 2 - 100)
     this.a = this.b * 1.5
     this.le = Math.sqrt(this.a ** 2 - this.b ** 2)

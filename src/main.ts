@@ -1,17 +1,21 @@
-import { getHeaderElement, getStatusElement, resetStatusElement } from './dom.js'
-import Ellipse from './ellipse.js'
-import SolarSystem from './solarSytem.js'
+import { getHeaderElement, getStatusElement, resetStatusElement } from './dom'
+import Ellipse from './ellipse'
+import SolarSystem from './solarSytem'
+import { CanvasInfo } from './types'
+import { checkDefined } from './preconditions'
+import Scene from './scenes/scene'
 
 function removeLoadingIndicator() {
-  document.getElementById('loading-indicator').style.display = 'none'
+  ;(document.getElementById('loading-indicator') as HTMLElement).style.display = 'none'
 }
 
-function getSelectedSceneType() {
-  return document.querySelector('input[name="scene-type"]:checked').value
+function getSelectedSceneType(): string {
+  const element = document.querySelector('input[name="scene-type"]:checked') as HTMLInputElement
+  return element.value
 }
 
-let currentSceneType
-let currentScene
+let currentSceneType: string
+let currentScene: Scene
 
 function getScene() {
   const selectedSceneType = getSelectedSceneType()
@@ -32,34 +36,37 @@ function getScene() {
 }
 
 function startSimulation() {
-  const canvas = document.getElementById('canvas')
-  const ctx = canvas.getContext('2d')
+  const canvas = document.getElementById('canvas') as HTMLCanvasElement
+  const ctx = checkDefined(canvas.getContext('2d'), 'canvas context')
 
-  const canvasInfo = {
-    canvas,
-    ctx,
-    width: undefined,
-    height: undefined,
-  }
-
-  const resizeCanvas = () => {
+  const adjustCanvas = (canvasInfo: CanvasInfo) => {
     // Lookup the size the browser is displaying the canvas.
     const displayWidth = canvas.clientWidth
     const displayHeight = canvas.clientHeight
 
-    // Check if the canvas is not the same size.
+    // Check if the canvas is not the same size and possibly adjust.
     if (canvas.width !== displayWidth || canvas.height !== displayHeight) {
-      // Make the canvas the same size
       canvas.width = displayWidth
       canvas.height = displayHeight
-      canvasInfo.width = displayWidth
-      canvasInfo.height = displayHeight
+      return {
+        ...canvasInfo,
+        width: displayWidth,
+        height: displayHeight,
+      }
     }
+    return canvasInfo
+  }
+
+  let canvasInfo: CanvasInfo = {
+    canvas,
+    ctx,
+    width: 0,
+    height: 0,
   }
 
   function mainLoop() {
     // prepare canvas
-    resizeCanvas()
+    canvasInfo = adjustCanvas(canvasInfo)
     ctx.fillStyle = 'black'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 

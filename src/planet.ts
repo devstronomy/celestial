@@ -1,9 +1,18 @@
-import { fillRGB, stroke } from './canvas.js'
-import C from './config.js'
-import { circle, colors } from './drawing.js'
-import { randomFloat, TAU } from './math.js'
+import { fillRGB, stroke } from './canvas'
+import C from './config'
+import { circle, colors } from './drawing'
+import { randomFloat, TAU } from './math'
+import { Color } from './types'
 
 class Planet {
+  name: string
+  distanceAU: number
+  radiusKm: number
+  orbitalPeriodDE: number
+  color: Color
+  startTheta: number
+  thetaRad: number
+
   /**
    * Creates an instance of a planet.
    *
@@ -13,7 +22,13 @@ class Planet {
    * @param orbitalPeriodDE orbital period in Earth days
    * @param color the color in { r, g, b } shape.
    */
-  constructor(name, distanceAU, radiusKm, orbitalPeriodDE, color) {
+  constructor(
+    name: string,
+    distanceAU: number,
+    radiusKm: number,
+    orbitalPeriodDE: number,
+    color: Color
+  ) {
     this.name = name
     this.distanceAU = distanceAU
     this.radiusKm = radiusKm
@@ -26,20 +41,20 @@ class Planet {
     this.thetaRad = 0
   }
 
-  scaledDistance() {
+  scaledDistance(): number {
     return this.distanceAU * C.planets.distanceFactor
   }
 
-  computeRadius() {
+  computeRadius(): number {
     return this.radiusKm * C.planets.radiusScalingFactor
   }
 
-  update(day) {
+  update(day: number): void {
     const rawTheta = -(TAU / this.orbitalPeriodDE) * day
     this.thetaRad = (this.startTheta + rawTheta * C.planets.speedFactor) % TAU
   }
 
-  drawBody(ctx) {
+  drawBody(ctx: CanvasRenderingContext2D): void {
     ctx.save()
     ctx.beginPath()
     ctx.rotate(this.thetaRad)
@@ -50,7 +65,7 @@ class Planet {
     ctx.restore()
   }
 
-  drawOrbit(ctx) {
+  drawOrbit(ctx: CanvasRenderingContext2D): void {
     ctx.save()
     ctx.beginPath()
     ctx.setLineDash([5, 5])
@@ -59,7 +74,7 @@ class Planet {
     ctx.restore()
   }
 
-  draw(ctx) {
+  draw(ctx: CanvasRenderingContext2D): void {
     this.drawOrbit(ctx)
     this.drawBody(ctx)
   }
