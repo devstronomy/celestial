@@ -4,4 +4,8 @@ const linearEccentricity = (semiMajor: number, semiMinor: number): number =>
 const orbitalEccentricity = (semiMajor: number, semiMinor: number): number =>
   linearEccentricity(semiMajor, semiMinor) / semiMajor
 
-export { linearEccentricity, orbitalEccentricity }
+const semiMajor = (periapsis: number, apoapsis: number): number => (periapsis + apoapsis) / 2
+
+const semiMinor = (periapsis: number, apoapsis: number): number => (periapsis + apoapsis) / 2
+
+export { linearEccentricity, orbitalEccentricity, semiMajor, semiMinor }

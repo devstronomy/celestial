@@ -1,4 +1,6 @@
-import { linearEccentricity, orbitalEccentricity } from '../orbital'
+import { linearEccentricity, orbitalEccentricity, semiMajor, semiMinor } from '../orbital'
+
+import planets from '../../../data/planets.json'
 
 describe('orbital', () => {
   describe('linearEccentricity', () => {
@@ -30,6 +32,22 @@ describe('orbital', () => {
     it('should work flat line "ellipse"', () => {
       expect(orbitalEccentricity(5, 0)).toBe(1)
       expect(orbitalEccentricity(0, 5)).toBeNaN()
+    })
+  })
+
+  describe('semiMajor', () => {
+    it('should pass sanity check', () => {
+      planets.forEach((planet) =>
+        expect(semiMajor(planet.aphelion, planet.perihelion)).toBeCloseTo(planet.distanceFromSun, 0)
+      )
+    })
+  })
+
+  describe('semiMinor', () => {
+    it('should pass sanity check', () => {
+      planets.forEach((planet) =>
+        expect(semiMinor(planet.aphelion, planet.perihelion)).toBeCloseTo(planet.distanceFromSun, 0)
+      )
     })
   })
 })
