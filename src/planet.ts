@@ -1,7 +1,7 @@
 import { fillRGB, stroke } from './canvas'
 import C from './config'
 import { circle, colors } from './drawing'
-import { randomFloat, TAU } from './math'
+import { randomFloat, TAU } from './computations'
 import { Color } from './types'
 
 class Planet {
