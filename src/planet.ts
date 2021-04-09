@@ -1,5 +1,5 @@
 import { fillRGB, stroke } from './canvas'
-import C from './config'
+import conf from './config'
 import { circle, colors } from './drawing'
 import { randomFloat, TAU } from './computations'
 import { Color } from './types'
@@ -42,16 +42,16 @@ class Planet {
   }
 
   scaledDistance(): number {
-    return this.distanceAU * C.planets.distanceFactor
+    return this.distanceAU * conf.planets.distanceFactor
   }
 
   computeRadius(): number {
-    return this.radiusKm * C.planets.radiusScalingFactor
+    return this.radiusKm * conf.planets.radiusScalingFactor
   }
 
   update(day: number): void {
     const rawTheta = -(TAU / this.orbitalPeriodDE) * day
-    this.thetaRad = (this.startTheta + rawTheta * C.planets.speedFactor) % TAU
+    this.thetaRad = (this.startTheta + rawTheta * conf.planets.speedFactor) % TAU
   }
 
   drawBody(ctx: CanvasRenderingContext2D): void {
