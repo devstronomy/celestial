@@ -3,6 +3,7 @@ import { br, span } from '../dom'
 import { circle, dashedLine, ellipse, line } from '../drawing'
 import { CanvasInfo } from '../types'
 import Scene from './scene'
+import { linearEccentricity, orbitalEccentricity } from '../computations'
 
 const colors = {
   ink: '#bbbbbb',
@@ -41,8 +42,8 @@ class EllipseScene implements Scene {
   render({ ctx, width, height }: CanvasInfo) {
     this.b = Math.min((width * 0.8) / 3, height / 2 - 100)
     this.a = this.b * 1.5
-    this.le = Math.sqrt(this.a ** 2 - this.b ** 2)
-    this.oe = this.le / this.a
+    this.le = linearEccentricity(this.a, this.b)
+    this.oe = orbitalEccentricity(this.a, this.b)
 
     ellipse(ctx, 0, 0, this.a, this.b)
     stroke(ctx, colors.ink)
