@@ -1,8 +1,8 @@
-import { fill, stroke } from './canvas'
-import { br, span } from './dom'
-import { circle, dashedLine, ellipse, line } from './drawing'
-import { CanvasInfo } from './types'
-import Scene from './scenes/scene'
+import { fill, stroke } from '../canvas'
+import { br, span } from '../dom'
+import { circle, dashedLine, ellipse, line } from '../drawing'
+import { CanvasInfo } from '../types'
+import Scene from './scene'
 
 const colors = {
   ink: '#bbbbbb',
@@ -12,7 +12,7 @@ const colors = {
   orbitalEccentricity: 'magenta',
 }
 
-class Ellipse implements Scene {
+class EllipseScene implements Scene {
   statusEl: HTMLElement
   a: number
   b: number
@@ -69,4 +69,4 @@ class Ellipse implements Scene {
   }
 }
 
-export default Ellipse
+export default EllipseScene

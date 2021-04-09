@@ -1,12 +1,12 @@
-import { fill, stroke } from './canvas'
-import C from './config'
-import { circle } from './drawing'
-import { getPlanets } from './planets'
-import { CanvasInfo } from './types'
-import Planet from './planet'
-import Scene from './scenes/scene'
+import Scene from './scene'
+import Planet from '../planet'
+import { getPlanets } from '../planets'
+import conf from '../config'
+import { circle } from '../drawing'
+import { fill, stroke } from '../canvas'
+import { CanvasInfo } from '../types'
 
-class SolarSystem implements Scene {
+class SolarSystemScene implements Scene {
   planets: Planet[]
   startMs: number
 
@@ -18,7 +18,7 @@ class SolarSystem implements Scene {
 
   drawSun(ctx: CanvasRenderingContext2D): void {
     const sunRadiusKm = 695700
-    circle(ctx, 0, 0, sunRadiusKm * C.sun.radiusScalingFactor)
+    circle(ctx, 0, 0, sunRadiusKm * conf.sun.radiusScalingFactor)
     fill(ctx, 'yellow')
     stroke(ctx, 'orange')
   }
@@ -32,4 +32,4 @@ class SolarSystem implements Scene {
   }
 }
 
-export default SolarSystem
+export default SolarSystemScene

@@ -1,9 +1,7 @@
 import { getHeaderElement, getStatusElement, resetStatusElement } from './dom'
-import Ellipse from './ellipse'
-import SolarSystem from './solarSytem'
 import { CanvasInfo } from './types'
 import { checkDefined } from './preconditions'
-import Scene from './scenes/scene'
+import { EllipseScene, Scene, SolarSystemScene } from './scenes'
 
 function removeLoadingIndicator() {
   ;(document.getElementById('loading-indicator') as HTMLElement).style.display = 'none'
@@ -24,10 +22,10 @@ function getScene() {
     currentSceneType = selectedSceneType
     if (selectedSceneType === 'mean-orbits') {
       getHeaderElement().innerHTML = 'Simulation of the Solar System with <b>mean orbits</b>'
-      currentScene = new SolarSystem()
+      currentScene = new SolarSystemScene()
     } else if (selectedSceneType === 'ellipse') {
       getHeaderElement().innerHTML = 'Basic <b>Ellipse</b> Terminology'
-      currentScene = new Ellipse(getStatusElement())
+      currentScene = new EllipseScene(getStatusElement())
     } else {
       throw new Error(`Unknown scene type: ${selectedSceneType}`)
     }
