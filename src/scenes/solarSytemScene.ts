@@ -1,6 +1,6 @@
 import Scene from './scene'
 import Planet from '../planet'
-import { getPlanets } from '../planets'
+import { planets } from '../planets'
 import conf from '../config'
 import { circle } from '../drawing'
 import { fill, stroke } from '../canvas'
@@ -12,7 +12,7 @@ class SolarSystemScene implements Scene {
 
   constructor() {
     // TODO: hide outer planets until having a meaningful way to display them. E.g., zooming.
-    this.planets = getPlanets().slice(0, 4)
+    this.planets = planets.slice(0, 4)
     this.startMs = Date.now()
   }
 

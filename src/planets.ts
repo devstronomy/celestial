@@ -1,8 +1,8 @@
 import { AU } from './constants'
 import Planet from './planet'
-
-import rawPlanets from '../data/planets.json'
-import { Color } from './types'
+import { Color, PlanetData } from './types'
+import { checkDefined } from './preconditions'
+import planetsData from '../data/planets.json'
 
 const color: (r: number, g: number, b: number) => Color = (r, g, b) => ({
   r: String(r),
@@ -22,17 +22,24 @@ const planetColors: Record<string, Color> = {
   Pluto: color(180, 180, 180),
 }
 
-const planets: Planet[] = rawPlanets.map(
-  (p) =>
-    new Planet(
-      p.name,
-      (p.distanceFromSun * 10 ** 9) / AU, // convert from 10^6 km to AUs.
-      p.diameter / 2,
-      p.orbitalPeriod,
-      planetColors[p.name]
-    )
+const newPlanet = (p: PlanetData): Readonly<Planet> =>
+  new Planet(
+    p.name,
+    (p.distanceFromSun * 10 ** 9) / AU, // convert from 10^6 km to AUs.
+    p.diameter / 2,
+    p.orbitalPeriod,
+    planetColors[p.name]
+  )
+
+const planets: readonly Planet[] = planetsData
+  .filter((p) => p.name !== 'Pluto')
+  .map((p) => newPlanet(p))
+
+const plutoData = checkDefined(
+  planetsData.find((p) => p.name === 'Pluto'),
+  'Pluto not found'
 )
 
-const getPlanets = () => planets
+const pluto: Planet = newPlanet(plutoData)
 
-export { getPlanets }
+export { planets, pluto }
