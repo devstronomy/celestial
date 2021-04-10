@@ -1,21 +1,21 @@
-import { linearEccentricity, orbitalEccentricity, semiMajor, semiMinor } from '../orbital'
+import { leFromAB, leFromAP, orbitalEccentricity, semiMajor, semiMinorFromLeA } from '../orbital'
 
 import planets from '../../../data/planets.json'
 
 describe('orbital', () => {
-  describe('linearEccentricity', () => {
+  describe('leFromAB', () => {
     it('should pass sanity check', () => {
-      expect(linearEccentricity(5, 4)).toBe(3)
-      expect(linearEccentricity(5, 3)).toBe(4)
+      expect(leFromAB(5, 4)).toBe(3)
+      expect(leFromAB(5, 3)).toBe(4)
     })
 
     it('should work for circle ', () => {
-      expect(linearEccentricity(5, 5)).toBe(0)
+      expect(leFromAB(5, 5)).toBe(0)
     })
 
     it('should work flat line "ellipse"', () => {
-      expect(linearEccentricity(5, 0)).toBe(5)
-      expect(linearEccentricity(0, 5)).toBeNaN()
+      expect(leFromAB(5, 0)).toBe(5)
+      expect(leFromAB(0, 5)).toBeNaN()
     })
   })
 
@@ -43,11 +43,14 @@ describe('orbital', () => {
     })
   })
 
-  describe('semiMinor', () => {
+  describe('semiMinorFromLeA', () => {
     it('should pass sanity check', () => {
-      planets.forEach((planet) =>
-        expect(semiMinor(planet.aphelion, planet.perihelion)).toBeCloseTo(planet.distanceFromSun, 0)
-      )
+      planets.forEach((planet) => {
+        const a = semiMajor(planet.perihelion, planet.aphelion)
+        const le = leFromAP(a, planet.perihelion)
+        const expectedLe = undefined // MK: Fixme
+        expect(semiMinorFromLeA(a, le)).toBeCloseTo(expectedLe, 0)
+      })
     })
   })
 })

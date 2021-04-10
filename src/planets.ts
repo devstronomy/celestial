@@ -22,10 +22,15 @@ const planetColors: Record<string, Color> = {
   Pluto: color(180, 180, 180),
 }
 
+// convert from 10^6 km to AUs.
+const toAU = (km6: number) => (km6 * 10 ** 9) / AU
+
 const newPlanet = (p: PlanetData): Readonly<Planet> =>
   new Planet(
     p.name,
-    (p.distanceFromSun * 10 ** 9) / AU, // convert from 10^6 km to AUs.
+    toAU(p.distanceFromSun),
+    toAU(p.perihelion),
+    toAU(p.aphelion),
     p.diameter / 2,
     p.orbitalPeriod,
     planetColors[p.name]

@@ -6,6 +6,8 @@ import { drawMeanOrbit, drawMeanPositionedBody } from './orbits'
 class Planet {
   name: string
   distanceAU: number
+  perihelionAU: number
+  aphelionAU: number
   radiusKm: number
   orbitalPeriodDE: number
   color: Color
@@ -17,6 +19,8 @@ class Planet {
    *
    * @param name name of the planet
    * @param distanceAU average distance from the Sun in astronomical units.
+   * @param perihelionAU perihelion in astronomical units.
+   * @param aphelionAU aphelion in astronomical units.
    * @param radiusKm radius of the body in km.
    * @param orbitalPeriodDE orbital period in Earth days
    * @param color the color in { r, g, b } shape.
@@ -24,11 +28,16 @@ class Planet {
   constructor(
     name: string,
     distanceAU: number,
+    perihelionAU: number,
+    aphelionAU: number,
     radiusKm: number,
     orbitalPeriodDE: number,
     color: Color
   ) {
     this.name = name
+    this.distanceAU = distanceAU
+    this.perihelionAU = perihelionAU
+    this.aphelionAU = aphelionAU
     this.distanceAU = distanceAU
     this.radiusKm = radiusKm
     this.orbitalPeriodDE = orbitalPeriodDE
