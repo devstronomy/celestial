@@ -2,8 +2,17 @@ import { planets, pluto } from '../planets'
 
 describe('planets', () => {
   describe('planets', () => {
-    it('should return all planets of Solar System', () => {
+    it('should contains all planets of Solar System', () => {
       expect(planets.length).toBe(8)
+    })
+
+    it('should be sorted by distance by default', () => {
+      planets
+        .map((p) => p.distanceAU)
+        .reduce((prev: number, current: number) => {
+          expect(prev).toBeLessThan(current)
+          return current
+        }, 0)
     })
   })
 
