@@ -1,7 +1,7 @@
 import { stroke } from './canvas'
 
 const colors = {
-  dashedLine: '#444444',
+  dashedLine: '#666666',
 }
 
 function line(

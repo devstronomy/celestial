@@ -13,7 +13,7 @@ const colors = {
   orbitalEccentricity: 'magenta',
 }
 
-class EllipseScene implements Scene {
+class EllipseScene extends Scene {
   statusEl: HTMLElement
   a: number
   b: number
@@ -21,6 +21,7 @@ class EllipseScene implements Scene {
   oe: number
 
   constructor(statusEl: HTMLElement) {
+    super()
     this.statusEl = statusEl
     this.a = 0 // semi-major axis
     this.b = 0 // semi-minor axis

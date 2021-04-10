@@ -1,8 +1,7 @@
-import { fillRGB, stroke } from './canvas'
 import conf from './config'
-import { circle, colors } from './drawing'
 import { randomFloat, TAU } from './computations'
 import { Color } from './types'
+import { drawMeanOrbit, drawMeanPositionedBody } from './orbits'
 
 class Planet {
   name: string
@@ -45,38 +44,14 @@ class Planet {
     return this.distanceAU * conf.planets.distanceFactor
   }
 
-  computeRadius(): number {
-    return this.radiusKm * conf.planets.radiusScalingFactor
-  }
-
   update(day: number): void {
     const rawTheta = -(TAU / this.orbitalPeriodDE) * day
     this.thetaRad = (this.startTheta + rawTheta * conf.planets.speedFactor) % TAU
   }
 
-  drawBody(ctx: CanvasRenderingContext2D): void {
-    ctx.save()
-    ctx.beginPath()
-    ctx.rotate(this.thetaRad)
-    ctx.translate(this.scaledDistance(), 0)
-    circle(ctx, 0, 0, this.computeRadius())
-    fillRGB(ctx, this.color.r, this.color.g, this.color.b)
-    stroke(ctx, 'black')
-    ctx.restore()
-  }
-
-  drawOrbit(ctx: CanvasRenderingContext2D): void {
-    ctx.save()
-    ctx.beginPath()
-    ctx.setLineDash([5, 5])
-    circle(ctx, 0, 0, this.scaledDistance())
-    stroke(ctx, colors.dashedLine)
-    ctx.restore()
-  }
-
   draw(ctx: CanvasRenderingContext2D): void {
-    this.drawOrbit(ctx)
-    this.drawBody(ctx)
+    drawMeanOrbit(ctx, this)
+    drawMeanPositionedBody(ctx, this)
   }
 }
 

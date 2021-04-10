@@ -1,7 +1,7 @@
 import { getHeaderElement, getStatusElement, resetStatusElement } from './dom'
 import { CanvasInfo } from './types'
 import { checkDefined } from './preconditions'
-import { EllipseScene, Scene, SolarSystemScene } from './scenes'
+import { EllipseScene, OrbitsTypesScene, Scene, SolarSystemScene } from './scenes'
 
 function removeLoadingIndicator() {
   ;(document.getElementById('loading-indicator') as HTMLElement).style.display = 'none'
@@ -23,6 +23,9 @@ function getScene() {
     if (selectedSceneType === 'mean-orbits') {
       getHeaderElement().innerHTML = 'Simulation of the Solar System with <b>mean orbits</b>'
       currentScene = new SolarSystemScene()
+    } else if (selectedSceneType === 'orbits-types') {
+      getHeaderElement().innerHTML = 'Shows different type of planetary orbits'
+      currentScene = new OrbitsTypesScene()
     } else if (selectedSceneType === 'ellipse') {
       getHeaderElement().innerHTML = 'Basic <b>Ellipse</b> Terminology'
       currentScene = new EllipseScene(getStatusElement())
