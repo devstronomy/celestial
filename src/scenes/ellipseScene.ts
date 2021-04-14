@@ -3,7 +3,7 @@ import { br, span } from '../dom'
 import { circle, dashedLine, ellipse, line } from '../drawing'
 import { CanvasInfo } from '../types'
 import Scene from './scene'
-import { linearEccentricity, orbitalEccentricity } from '../computations'
+import { leFromAB, oe } from '../computations'
 
 const colors = {
   ink: '#bbbbbb',
@@ -15,18 +15,18 @@ const colors = {
 
 class EllipseScene extends Scene {
   statusEl: HTMLElement
-  a: number
-  b: number
-  le: number
-  oe: number
+  a: number // semi-major axis
+  b: number // semi-minor axis
+  le: number // linear eccentricity (center to focus)
+  oe: number // orbital eccentricity
 
   constructor(statusEl: HTMLElement) {
     super()
     this.statusEl = statusEl
-    this.a = 0 // semi-major axis
-    this.b = 0 // semi-minor axis
-    this.le = 0 // linear eccentricity (center to focus)
-    this.oe = 0 // orbital eccentricity
+    this.a = 0
+    this.b = 0
+    this.le = 0
+    this.oe = 0
   }
 
   updateStatus() {
@@ -43,8 +43,8 @@ class EllipseScene extends Scene {
   render({ ctx, width, height }: CanvasInfo) {
     this.b = Math.min((width * 0.8) / 3, height / 2 - 100)
     this.a = this.b * 1.5
-    this.le = linearEccentricity(this.a, this.b)
-    this.oe = orbitalEccentricity(this.a, this.b)
+    this.le = leFromAB(this.a, this.b)
+    this.oe = oe(this.a, this.b)
 
     ellipse(ctx, 0, 0, this.a, this.b)
     stroke(ctx, colors.ink)
