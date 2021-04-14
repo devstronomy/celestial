@@ -25,7 +25,7 @@ function getScene() {
       currentScene = new SolarSystemScene()
     } else if (selectedSceneType === 'orbits-types') {
       getHeaderElement().innerHTML = 'Shows different type of planetary orbits'
-      currentScene = new OrbitsTypesScene()
+      currentScene = new OrbitsTypesScene(getStatusElement())
     } else if (selectedSceneType === 'ellipse') {
       getHeaderElement().innerHTML = 'Basic <b>Ellipse</b> Terminology'
       currentScene = new EllipseScene(getStatusElement())

@@ -25,6 +25,14 @@ const planetColors: Record<string, Color> = {
 // convert from 10^6 km to AUs.
 const toAU = (km6: number) => (km6 * 10 ** 9) / AU
 
+const newPlanetByName = (name: string) =>
+  newPlanet(
+    checkDefined(
+      planetsData.find((p) => p.name === name),
+      `Planet with ${name} not found`
+    )
+  )
+
 const newPlanet = (p: PlanetData): Readonly<Planet> =>
   new Planet(
     p.name,
@@ -47,4 +55,4 @@ const plutoData = checkDefined(
 
 const pluto: Planet = newPlanet(plutoData)
 
-export { planets, pluto }
+export { planets, pluto, newPlanetByName }

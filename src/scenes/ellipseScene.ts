@@ -4,14 +4,7 @@ import { circle, dashedLine, ellipse, line } from '../drawing'
 import { CanvasInfo } from '../types'
 import Scene from './scene'
 import { leFromAB, oe } from '../computations'
-
-const colors = {
-  ink: '#bbbbbb',
-  semiMajor: '#ff531e',
-  semiMinor: '#0f93d4',
-  linearEccentricity: '#1db11d',
-  orbitalEccentricity: 'magenta',
-}
+import { colors } from './scenes'
 
 class EllipseScene extends Scene {
   statusEl: HTMLElement
