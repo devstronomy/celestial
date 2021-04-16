@@ -25,6 +25,6 @@ const leFromAOe = (a: number, oe: number): number => a * oe
 const oe = (a: number, b: number): number => leFromAB(a, b) / a
 
 /** Semi-minor from semi-major and linear eccentricity. */
-const bFromLeA = (a: number, le: number): number => Math.sqrt(a ** 2 - le ** 2)
+const bFromALe = (a: number, le: number): number => Math.sqrt(a ** 2 - le ** 2)
 
-export { leFromAB, leFromAP, leFromAOe, oe, semiMajor, bFromLeA }
+export { leFromAB, leFromAP, leFromAOe, oe, semiMajor, bFromALe }

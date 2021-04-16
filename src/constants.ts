@@ -1,4 +1,4 @@
 // Astronomical Unit in meters
-const AU: number = 1.495978707 * 10 ** 11
+const AU: number = 149_597_870_700
 
 export { AU }

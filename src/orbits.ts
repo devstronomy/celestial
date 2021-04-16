@@ -2,7 +2,7 @@ import { circle, colors, ellipse } from './drawing'
 import { fillRGB, stroke } from './canvas'
 import conf from './config'
 import Planet from './planet'
-import { leFromAP, semiMajor, bFromLeA } from './computations'
+import { leFromAP, semiMajor, bFromALe } from './computations'
 
 function computeRadius(radiusKm: number): number {
   return radiusKm * conf.planets.radiusScalingFactor
@@ -32,13 +32,13 @@ function drawMeanOrbit(ctx: CanvasRenderingContext2D, { distanceAU }: Planet): v
   ctx.restore()
 }
 
-function drawOrbit(ctx: CanvasRenderingContext2D, { perihelionAU, aphelionAU }: Planet): void {
+function drawOrbit(ctx: CanvasRenderingContext2D, perihelionKm: number, aphelionKm: number): void {
   ctx.save()
   ctx.beginPath()
   ctx.setLineDash([5, 5])
-  const a = semiMajor(perihelionAU, aphelionAU)
-  const le = leFromAP(a, perihelionAU)
-  const b = bFromLeA(a, le)
+  const a = semiMajor(perihelionKm, aphelionKm)
+  const le = leFromAP(a, perihelionKm)
+  const b = bFromALe(a, le)
   ellipse(ctx, 0 - scaledDistance(le), 0, scaledDistance(a), scaledDistance(b))
   stroke(ctx, colors.dashedLine)
   ctx.restore()

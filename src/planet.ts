@@ -10,6 +10,8 @@ class Planet {
   aphelionAU: number
   radiusKm: number
   orbitalPeriodDE: number
+  orbitalEccentricity: number
+
   color: Color
   startTheta: number
   thetaRad: number
@@ -23,6 +25,7 @@ class Planet {
    * @param aphelionAU aphelion in astronomical units.
    * @param radiusKm radius of the body in km.
    * @param orbitalPeriodDE orbital period in Earth days
+   * @param orbitalEccentricity orbital eccentricity
    * @param color the color in { r, g, b } shape.
    */
   constructor(
@@ -32,6 +35,7 @@ class Planet {
     aphelionAU: number,
     radiusKm: number,
     orbitalPeriodDE: number,
+    orbitalEccentricity: number,
     color: Color
   ) {
     this.name = name
@@ -41,6 +45,7 @@ class Planet {
     this.distanceAU = distanceAU
     this.radiusKm = radiusKm
     this.orbitalPeriodDE = orbitalPeriodDE
+    this.orbitalEccentricity = orbitalEccentricity
     this.color = color
 
     // Angular position. Set random initial angular position for a planet in radians.

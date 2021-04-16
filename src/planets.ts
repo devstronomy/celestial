@@ -1,8 +1,8 @@
-import { AU } from './constants'
 import Planet from './planet'
 import { Color, PlanetData } from './types'
 import { checkDefined } from './preconditions'
 import planetsData from '../data/planets.json'
+import { km6ToAu } from './computations'
 
 const color: (r: number, g: number, b: number) => Color = (r, g, b) => ({
   r: String(r),
@@ -22,9 +22,6 @@ const planetColors: Record<string, Color> = {
   Pluto: color(180, 180, 180),
 }
 
-// convert from 10^6 km to AUs.
-const toAU = (km6: number) => (km6 * 10 ** 9) / AU
-
 const newPlanetByName = (name: string) =>
   newPlanet(
     checkDefined(
@@ -36,11 +33,12 @@ const newPlanetByName = (name: string) =>
 const newPlanet = (p: PlanetData): Readonly<Planet> =>
   new Planet(
     p.name,
-    toAU(p.distanceFromSun),
-    toAU(p.perihelion),
-    toAU(p.aphelion),
+    km6ToAu(p.distanceFromSun),
+    km6ToAu(p.perihelion),
+    km6ToAu(p.aphelion),
     p.diameter / 2,
     p.orbitalPeriod,
+    p.orbitalEccentricity,
     planetColors[p.name]
   )
 

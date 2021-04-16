@@ -1,4 +1,4 @@
-import { bFromLeA, leFromAB, oe, semiMajor } from '../orbital'
+import { bFromALe, leFromAB, oe, semiMajor } from '../orbital'
 
 import planets from '../../../data/planets.json'
 
@@ -47,7 +47,7 @@ describe('orbital', () => {
     it('should pass sanity check', () => {
       const a = 5
       const le = 4
-      const b = bFromLeA(a, le)
+      const b = bFromALe(a, le)
       expect(b).toBe(3)
     })
   })
