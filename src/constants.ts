@@ -1,4 +1,4 @@
 // Astronomical Unit in meters
-const AU: number = 149_597_870_700
+const AU_m: number = 149_597_870_700
 
-export { AU }
+export { AU_m }

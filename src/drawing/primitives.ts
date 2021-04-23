@@ -1,8 +1,5 @@
-import { stroke } from './canvas'
-
-const colors = {
-  dashedLine: '#666666',
-}
+import { stroke } from '../canvas'
+import { colors } from '../scenes/scenes'
 
 function line(
   ctx: CanvasRenderingContext2D,
@@ -55,4 +52,4 @@ function circle(ctx: CanvasRenderingContext2D, x: number, y: number, radius: num
   ellipse(ctx, x, y, radius, radius)
 }
 
-export { colors, line, dashedLine, ellipse, circle }
+export { line, dashedLine, ellipse, circle }

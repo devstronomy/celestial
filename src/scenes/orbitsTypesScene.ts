@@ -2,7 +2,7 @@ import { CanvasInfo } from '../types'
 import { newPlanetByName } from '../planets'
 import Planet from '../planet'
 import { drawSun } from '../sun'
-import { drawMeanOrbit, drawMeanPositionedBody, drawOrbit } from '../orbits'
+import { drawMeanOrbit, drawMeanPositionedBody, drawOrbit, drawOrbitalElements } from '../drawing'
 import Scene from './scene'
 import { colors, tabularize } from './scenes'
 import * as C from '../computations'
@@ -38,8 +38,8 @@ class OrbitsTypesScene extends Scene {
       ['semi-major axis     ', km6line(formatKm(this.a)), colors.semiMajor],
       ['semi-minor axis     ', km6line(formatKm(this.b)), colors.semiMinor],
       ['linear eccentricity ', km6line(formatKm(this.le)), colors.linearEccentricity],
-      ['perihelion          ', km6line(formatKm(this.planetInfo.perihelionKm6)), 'white'],
-      ['aphelion            ', km6line(formatKm(this.planetInfo.aphelionKm6)), 'white'],
+      ['perihelion          ', km6line(formatKm(this.planetInfo.perihelionKm6)), colors.perihelion],
+      ['aphelion            ', km6line(formatKm(this.planetInfo.aphelionKm6)), colors.aphelion],
     ])
   }
 
@@ -58,7 +58,11 @@ class OrbitsTypesScene extends Scene {
     this.le = C.leFromAP(this.a, p.perihelionKm6)
     this.b = C.bFromALe(this.a, this.le)
     this.oe = this.le / this.a
+
+    drawOrbitalElements(ctx, C.km6ToAu(p.perihelionKm6), C.km6ToAu(p.aphelionKm6))
+
     drawSun(ctx)
+
     drawMeanOrbit(ctx, this.planet)
     drawMeanPositionedBody(ctx, this.planet)
 

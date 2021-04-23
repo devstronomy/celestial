@@ -1,7 +1,7 @@
 import conf from './config'
 import { randomFloat, TAU } from './computations'
 import { Color } from './types'
-import { drawMeanOrbit, drawMeanPositionedBody } from './orbits'
+import { drawMeanOrbit, drawMeanPositionedBody } from './drawing'
 
 class Planet {
   name: string
@@ -20,9 +20,9 @@ class Planet {
    * Creates an instance of a planet.
    *
    * @param name name of the planet
-   * @param distanceAU average distance from the Sun in astronomical units.
-   * @param perihelionAU perihelion in astronomical units.
-   * @param aphelionAU aphelion in astronomical units.
+   * @param distanceAu average distance from the Sun in astronomical units.
+   * @param perihelionAu perihelion in astronomical units.
+   * @param aphelionAu aphelion in astronomical units.
    * @param radiusKm radius of the body in km.
    * @param orbitalPeriodDE orbital period in Earth days
    * @param orbitalEccentricity orbital eccentricity
@@ -30,19 +30,19 @@ class Planet {
    */
   constructor(
     name: string,
-    distanceAU: number,
-    perihelionAU: number,
-    aphelionAU: number,
+    distanceAu: number,
+    perihelionAu: number,
+    aphelionAu: number,
     radiusKm: number,
     orbitalPeriodDE: number,
     orbitalEccentricity: number,
     color: Color
   ) {
     this.name = name
-    this.distanceAU = distanceAU
-    this.perihelionAU = perihelionAU
-    this.aphelionAU = aphelionAU
-    this.distanceAU = distanceAU
+    this.distanceAU = distanceAu
+    this.perihelionAU = perihelionAu
+    this.aphelionAU = aphelionAu
+    this.distanceAU = distanceAu
     this.radiusKm = radiusKm
     this.orbitalPeriodDE = orbitalPeriodDE
     this.orbitalEccentricity = orbitalEccentricity
