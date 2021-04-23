@@ -14,4 +14,7 @@ const br = (): string => `<br/>`
 const span = (content: string, color: string): string =>
   `<span style="color: ${color}">${content}</span>`
 
-export { getHeaderElement, getStatusElement, resetStatusElement, br, span }
+const preInline = (content: string, color: string): string =>
+  `<pre style="display: inline; color: ${color}">${content}</pre>`
+
+export { getHeaderElement, getStatusElement, resetStatusElement, br, span, preInline }

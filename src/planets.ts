@@ -1,8 +1,8 @@
-import { AU } from './constants'
 import Planet from './planet'
 import { Color, PlanetData } from './types'
 import { checkDefined } from './preconditions'
 import planetsData from '../data/planets.json'
+import { km6ToAu } from './computations'
 
 const color: (r: number, g: number, b: number) => Color = (r, g, b) => ({
   r: String(r),
@@ -22,12 +22,23 @@ const planetColors: Record<string, Color> = {
   Pluto: color(180, 180, 180),
 }
 
+const newPlanetByName = (name: string) =>
+  newPlanet(
+    checkDefined(
+      planetsData.find((p) => p.name === name),
+      `Planet with ${name} not found`
+    )
+  )
+
 const newPlanet = (p: PlanetData): Readonly<Planet> =>
   new Planet(
     p.name,
-    (p.distanceFromSun * 10 ** 9) / AU, // convert from 10^6 km to AUs.
+    km6ToAu(p.distanceFromSun),
+    km6ToAu(p.perihelion),
+    km6ToAu(p.aphelion),
     p.diameter / 2,
     p.orbitalPeriod,
+    p.orbitalEccentricity,
     planetColors[p.name]
   )
 
@@ -42,4 +53,4 @@ const plutoData = checkDefined(
 
 const pluto: Planet = newPlanet(plutoData)
 
-export { planets, pluto }
+export { planets, pluto, newPlanetByName }
