@@ -1,10 +1,9 @@
 import { fill, stroke } from '../canvas'
-import { br, span } from '../dom'
 import { circle, dashedLine, ellipse, line } from '../drawing'
 import { CanvasInfo } from '../types'
 import Scene from './scene'
 import { leFromAB, oe } from '../computations'
-import { colors } from './scenes'
+import { colors, tabularize } from './scenes'
 
 class EllipseScene extends Scene {
   statusEl: HTMLElement
@@ -23,14 +22,12 @@ class EllipseScene extends Scene {
   }
 
   updateStatus() {
-    this.statusEl.innerHTML =
-      span(`semi-major axis: ${this.a.toFixed(2)}`, colors.semiMajor) +
-      br() +
-      span(`semi-minor axis: ${this.b.toFixed(2)}`, colors.semiMinor) +
-      br() +
-      span(`linear eccentricity: ${this.le.toFixed(2)}`, colors.linearEccentricity) +
-      br() +
-      span(`orbital eccentricity: ${this.oe.toFixed(2)}`, colors.orbitalEccentricity)
+    this.statusEl.innerHTML = tabularize([
+      ['semi-major axis     ', this.a.toFixed(2), colors.semiMajor],
+      ['semi-minor axis     ', this.b.toFixed(2), colors.semiMinor],
+      ['linear eccentricity ', this.le.toFixed(2), colors.linearEccentricity],
+      ['orbital eccentricity', this.oe.toFixed(2), colors.orbitalEccentricity],
+    ])
   }
 
   render({ ctx, width, height }: CanvasInfo) {

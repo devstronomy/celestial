@@ -4,13 +4,13 @@ import Planet from '../planet'
 import { drawSun } from '../sun'
 import { drawMeanOrbit, drawMeanPositionedBody, drawOrbit } from '../orbits'
 import Scene from './scene'
-import { br, preInline } from '../dom'
-import { colors } from './scenes'
+import { colors, tabularize } from './scenes'
 import * as C from '../computations'
 
 const DELTA = 0.5
 
 const formatKm = (x: number): string => x.toFixed().padStart(3, ' ')
+const km6line = (s: string) => `${s} km<sup>6</sup>`
 
 class OrbitsTypesScene extends Scene {
   private readonly planet: Planet = newPlanetByName('Earth')
@@ -33,20 +33,14 @@ class OrbitsTypesScene extends Scene {
   }
 
   updateStatus() {
-    this.statusEl.innerHTML =
-      preInline(`orbital eccentricity : ${this.oe.toFixed(2)}`, colors.orbitalEccentricity) +
-      br() +
-      br() +
-      preInline(`semi-major axis      : ${formatKm(this.a)}`, colors.semiMajor) +
-      br() +
-      preInline(`semi-minor axis      : ${formatKm(this.b)}`, colors.semiMinor) +
-      br() +
-      preInline(`linear eccentricity  : ${formatKm(this.le)}`, colors.linearEccentricity) +
-      br() +
-      br() +
-      preInline(`perihelion           : ${formatKm(this.planetInfo.perihelionKm6)}`, 'white') +
-      br() +
-      preInline(`aphelion             : ${formatKm(this.planetInfo.aphelionKm6)}`, 'white')
+    this.statusEl.innerHTML = tabularize([
+      ['orbital eccentricity', this.oe.toFixed(2), colors.orbitalEccentricity],
+      ['semi-major axis     ', km6line(formatKm(this.a)), colors.semiMajor],
+      ['semi-minor axis     ', km6line(formatKm(this.b)), colors.semiMinor],
+      ['linear eccentricity ', km6line(formatKm(this.le)), colors.linearEccentricity],
+      ['perihelion          ', km6line(formatKm(this.planetInfo.perihelionKm6)), 'white'],
+      ['aphelion            ', km6line(formatKm(this.planetInfo.aphelionKm6)), 'white'],
+    ])
   }
 
   render({ ctx }: CanvasInfo) {

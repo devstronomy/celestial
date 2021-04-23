@@ -1,3 +1,5 @@
+import { br, preInline } from '../dom'
+
 const colors = {
   ink: '#bbbbbb',
   semiMajor: '#ff531e',
@@ -6,4 +8,10 @@ const colors = {
   orbitalEccentricity: 'magenta',
 }
 
-export { colors }
+type StatusInfo = Readonly<[string, string, string]>[]
+
+const tabularize = (statusInfo: StatusInfo) =>
+  statusInfo.map((si) => preInline(`${si[0]} : ${si[1]}`, si[2])).join(br())
+
+export { colors, tabularize }
+export type { StatusInfo }
