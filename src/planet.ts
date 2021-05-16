@@ -4,17 +4,11 @@ import { Color } from './types'
 import { drawMeanOrbit, drawMeanPositionedBody } from './drawing'
 
 class Planet {
-  name: string
-  distanceAU: number
-  perihelionAU: number
-  aphelionAU: number
-  radiusKm: number
-  orbitalPeriodDE: number
-  orbitalEccentricity: number
+  // Angular position. Set random initial angular position for a planet in radians.
+  private readonly startTheta: number = randomFloat(TAU)
 
-  color: Color
-  startTheta: number
-  thetaRad: number
+  // current theta in radians
+  thetaRad: number = 0
 
   /**
    * Creates an instance of a planet.
@@ -29,33 +23,18 @@ class Planet {
    * @param color the color in { r, g, b } shape.
    */
   constructor(
-    name: string,
-    distanceAu: number,
-    perihelionAu: number,
-    aphelionAu: number,
-    radiusKm: number,
-    orbitalPeriodDE: number,
-    orbitalEccentricity: number,
-    color: Color
-  ) {
-    this.name = name
-    this.distanceAU = distanceAu
-    this.perihelionAU = perihelionAu
-    this.aphelionAU = aphelionAu
-    this.distanceAU = distanceAu
-    this.radiusKm = radiusKm
-    this.orbitalPeriodDE = orbitalPeriodDE
-    this.orbitalEccentricity = orbitalEccentricity
-    this.color = color
-
-    // Angular position. Set random initial angular position for a planet in radians.
-    this.startTheta = randomFloat(TAU)
-    // current theta in radians
-    this.thetaRad = 0
-  }
+    readonly name: string,
+    readonly distanceAu: number,
+    readonly perihelionAu: number,
+    readonly aphelionAu: number,
+    readonly radiusKm: number,
+    readonly orbitalPeriodDE: number,
+    readonly orbitalEccentricity: number,
+    readonly color: Color
+  ) {}
 
   scaledDistance(): number {
-    return this.distanceAU * conf.planets.distanceFactor
+    return this.distanceAu * conf.planets.distanceFactor
   }
 
   update(day: number): void {

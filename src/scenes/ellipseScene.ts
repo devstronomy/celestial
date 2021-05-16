@@ -6,19 +6,13 @@ import { leFromAB, oe } from '../computations'
 import { colors, tabularize } from './scenes'
 
 class EllipseScene extends Scene {
-  statusEl: HTMLElement
-  a: number // semi-major axis
-  b: number // semi-minor axis
-  le: number // linear eccentricity (center to focus)
-  oe: number // orbital eccentricity
+  private a: number = 0 // semi-major axis
+  private b: number = 0 // semi-minor axis
+  private le: number = 0 // linear eccentricity (center to focus)
+  private oe: number = 0 // orbital eccentricity
 
-  constructor(statusEl: HTMLElement) {
+  constructor(private readonly statusEl: HTMLElement) {
     super()
-    this.statusEl = statusEl
-    this.a = 0
-    this.b = 0
-    this.le = 0
-    this.oe = 0
   }
 
   updateStatus() {

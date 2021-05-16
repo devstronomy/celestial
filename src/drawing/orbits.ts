@@ -13,7 +13,7 @@ function scaledDistance(distanceAU: number): number {
   return distanceAU * conf.planets.distanceFactor
 }
 
-function drawMeanPositionedBody(ctx: CanvasRenderingContext2D, planet: Planet): void {
+function drawMeanPositionedBody(ctx: CanvasRenderingContext2D, planet: Readonly<Planet>): void {
   ctx.save()
   ctx.beginPath()
   ctx.rotate(planet.thetaRad)
@@ -24,11 +24,11 @@ function drawMeanPositionedBody(ctx: CanvasRenderingContext2D, planet: Planet): 
   ctx.restore()
 }
 
-function drawMeanOrbit(ctx: CanvasRenderingContext2D, { distanceAU }: Planet): void {
+function drawMeanOrbit(ctx: CanvasRenderingContext2D, { distanceAu }: Readonly<Planet>): void {
   ctx.save()
   ctx.beginPath()
   ctx.setLineDash([5, 5])
-  circle(ctx, 0, 0, scaledDistance(distanceAU))
+  circle(ctx, 0, 0, scaledDistance(distanceAu))
   stroke(ctx, colors.dashedLine)
   ctx.restore()
 }

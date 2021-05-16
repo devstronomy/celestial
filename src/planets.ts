@@ -22,7 +22,7 @@ const planetColors: Record<string, Color> = {
   Pluto: color(180, 180, 180),
 }
 
-const newPlanetByName = (name: string) =>
+const newPlanetByName = (name: string): Readonly<Planet> =>
   newPlanet(
     checkDefined(
       planetsData.find((p) => p.name === name),
@@ -42,7 +42,7 @@ const newPlanet = (p: PlanetData): Readonly<Planet> =>
     planetColors[p.name]
   )
 
-const planets: readonly Planet[] = planetsData
+const planets: Readonly<Planet>[] = planetsData
   .filter((p) => p.name !== 'Pluto')
   .map((p) => newPlanet(p))
 
@@ -51,6 +51,6 @@ const plutoData = checkDefined(
   'Pluto not found'
 )
 
-const pluto: Planet = newPlanet(plutoData)
+const pluto: Readonly<Planet> = newPlanet(plutoData)
 
 export { planets, pluto, newPlanetByName }

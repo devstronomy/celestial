@@ -8,7 +8,7 @@ describe('planets', () => {
 
     it('should be sorted by distance by default', () => {
       planets
-        .map((p) => p.distanceAU)
+        .map((p) => p.distanceAu)
         .reduce((prev: number, current: number) => {
           expect(prev).toBeLessThan(current)
           return current
@@ -20,7 +20,7 @@ describe('planets', () => {
     it('should be defined properly', () => {
       expect(pluto).toBeDefined()
       expect(pluto.name).toBe('Pluto')
-      expect(pluto.distanceAU).toBeCloseTo(39.48)
+      expect(pluto.distanceAu).toBeCloseTo(39.48)
     })
   })
 })

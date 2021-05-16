@@ -5,12 +5,11 @@ import { CanvasInfo } from '../types'
 import { drawSun } from '../sun'
 
 class SolarSystemScene extends Scene {
-  planets: Planet[]
+  // TODO: hide outer planets until having a meaningful way to display them. E.g., zooming.
+  private readonly planets: Readonly<Planet>[] = planets.slice(0, 4)
 
   constructor() {
     super()
-    // TODO: hide outer planets until having a meaningful way to display them. E.g., zooming.
-    this.planets = planets.slice(0, 4)
   }
 
   render({ ctx }: CanvasInfo): void {

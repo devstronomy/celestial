@@ -13,7 +13,7 @@ const formatKm = (x: number): string => x.toFixed().padStart(3, ' ')
 const km6line = (s: string) => `${s} km<sup>6</sup>`
 
 class OrbitsTypesScene extends Scene {
-  private readonly planet: Planet = newPlanetByName('Earth')
+  private readonly planet: Readonly<Planet> = newPlanetByName('Earth')
   private delta: number = DELTA
   private a: number = 0 // semi-major axis
   private b: number = 0 // semi-minor axis
@@ -27,8 +27,8 @@ class OrbitsTypesScene extends Scene {
   constructor(private readonly statusEl: HTMLElement) {
     super()
     this.planetInfo = {
-      aphelionKm6: C.auToKm6(this.planet.aphelionAU),
-      perihelionKm6: C.auToKm6(this.planet.perihelionAU),
+      aphelionKm6: C.auToKm6(this.planet.aphelionAu),
+      perihelionKm6: C.auToKm6(this.planet.perihelionAu),
     }
   }
 
