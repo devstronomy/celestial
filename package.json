@@ -12,12 +12,11 @@
   "bugs": {
     "url": "https://github.com/devstronomy/celestial/issues"
   },
-  "version": "0.0.1",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "clean": "rm -rf dist",
-    "lint": "eslint 'src/**/*.[jt]s'",
-    "lint:fix": "eslint --fix 'src/**/*.[jt]s'",
+    "lint": "eslint src/**/*.[jt]s",
+    "lint:fix": "eslint --fix src/**/*.[jt]s",
     "start": "webpack serve --open --config webpack.dev.js",
     "test": "jest",
     "test:coverage": "jest --collect-coverage",
@@ -27,6 +26,8 @@
   },
   "devDependencies": {
     "@types/jest": "26.0.23",
+    "@typescript-eslint/eslint-plugin": "4.24.0",
+    "@typescript-eslint/parser": "4.24.0",
     "css-loader": "5.2.4",
     "css-minimizer-webpack-plugin": "3.0.0",
     "eslint": "7.26.0",

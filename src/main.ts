@@ -4,7 +4,7 @@ import { checkDefined } from './preconditions'
 import { EllipseScene, OrbitsTypesScene, Scene, SolarSystemScene } from './scenes'
 
 function removeLoadingIndicator() {
-  ;(document.getElementById('loading-indicator') as HTMLElement).style.display = 'none'
+  (document.getElementById('loading-indicator') as HTMLElement).style.display = 'none'
 }
 
 function getSelectedSceneType(): string {

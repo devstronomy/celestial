@@ -8,7 +8,7 @@ function line(
   x2: number,
   y2: number,
   color: string,
-  width: number = 3
+  width = 3
 ): void {
   ctx.save()
   ctx.beginPath()

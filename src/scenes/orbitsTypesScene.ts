@@ -14,11 +14,11 @@ const km6line = (s: string) => `${s} km<sup>6</sup>`
 
 class OrbitsTypesScene extends Scene {
   private readonly planet: Readonly<Planet> = newPlanetByName('Earth')
-  private delta: number = DELTA
-  private a: number = 0 // semi-major axis
-  private b: number = 0 // semi-minor axis
-  private le: number = 0 // linear eccentricity (center to focus)
-  private oe: number = 0 // orbital eccentricity
+  private delta = DELTA
+  private a = 0 // semi-major axis
+  private b = 0 // semi-minor axis
+  private le = 0 // linear eccentricity (center to focus)
+  private oe = 0 // orbital eccentricity
   private readonly planetInfo: {
     aphelionKm6: number
     perihelionKm6: number

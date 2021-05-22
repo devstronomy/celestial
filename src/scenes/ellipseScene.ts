@@ -6,10 +6,10 @@ import { leFromAB, oe } from '../computations'
 import { colors, tabularize } from './scenes'
 
 class EllipseScene extends Scene {
-  private a: number = 0 // semi-major axis
-  private b: number = 0 // semi-minor axis
-  private le: number = 0 // linear eccentricity (center to focus)
-  private oe: number = 0 // orbital eccentricity
+  private a = 0 // semi-major axis
+  private b = 0 // semi-minor axis
+  private le = 0 // linear eccentricity (center to focus)
+  private oe = 0 // orbital eccentricity
 
   constructor(private readonly statusEl: HTMLElement) {
     super()

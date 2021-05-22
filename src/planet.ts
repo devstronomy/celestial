@@ -8,7 +8,7 @@ class Planet {
   private readonly startTheta: number = randomFloat(TAU)
 
   // current theta in radians
-  thetaRad: number = 0
+  thetaRad = 0
 
   /**
    * Creates an instance of a planet.
