@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Helper script for quick testing '@devstronomy/canvas' locally before publishing.
+
+root_dir=`realpath "$(dirname "$0")/.."`
+devstronomy_canvas_dir="$root_dir/../../devstronomy-canvas"
+version="0.1.0"
+
+set -xeuo pipefail
+
+cd "$devstronomy_canvas_dir"
+
+npm run clean:build
+npm pack
+
+cd "$root_dir"
+
+npm install -SE "$devstronomy_canvas_dir/devstronomy-canvas-$version.tgz"
