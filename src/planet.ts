@@ -1,6 +1,7 @@
+import type { Color } from '@devstronomy/canvas'
+
+import { TAU, randomFloat } from './computations'
 import conf from './config'
-import { randomFloat, TAU } from './computations'
-import { Color } from './types'
 import { drawMeanOrbit, drawMeanPositionedBody } from './drawing'
 
 class Planet {

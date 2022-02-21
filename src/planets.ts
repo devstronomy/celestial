@@ -1,8 +1,10 @@
-import Planet from './planet'
-import { Color, PlanetData } from './types'
-import { checkDefined } from './preconditions'
+import type { Color } from '@devstronomy/canvas'
+
 import planetsData from '../data/planets.json'
 import { km6ToAu } from './computations'
+import Planet from './planet'
+import { checkDefined } from './preconditions'
+import { PlanetData } from './types'
 
 const color: (r: number, g: number, b: number) => Color = (r, g, b) => ({
   r: String(r),

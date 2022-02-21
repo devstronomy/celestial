@@ -1,8 +1,8 @@
-import { circle, dashedLine, ellipse, line } from './index'
-import { fillRGB, stroke } from '../canvas'
+import { circle, ellipse, fillRGB, line, stroke } from '@devstronomy/canvas'
+
+import { bFromALe, leFromAP, semiMajor } from '../computations'
 import conf from '../config'
 import Planet from '../planet'
-import { leFromAP, semiMajor, bFromALe } from '../computations'
 import { colors } from '../scenes/scenes'
 
 function computeRadius(radiusKm: number): number {
@@ -18,7 +18,7 @@ function drawMeanPositionedBody(ctx: CanvasRenderingContext2D, planet: Readonly<
   ctx.beginPath()
   ctx.rotate(planet.thetaRad)
   ctx.translate(planet.scaledDistance(), 0)
-  circle(ctx, 0, 0, computeRadius(planet.radiusKm))
+  circle(ctx, { x: 0, y: 0, r: computeRadius(planet.radiusKm) })
   fillRGB(ctx, planet.color.r, planet.color.g, planet.color.b)
   stroke(ctx, 'black')
   ctx.restore()
@@ -28,7 +28,7 @@ function drawMeanOrbit(ctx: CanvasRenderingContext2D, { distanceAu }: Readonly<P
   ctx.save()
   ctx.beginPath()
   ctx.setLineDash([5, 5])
-  circle(ctx, 0, 0, scaledDistance(distanceAu))
+  circle(ctx, { x: 0, y: 0, r: scaledDistance(distanceAu) })
   stroke(ctx, colors.dashedLine)
   ctx.restore()
 }
@@ -40,7 +40,7 @@ function drawOrbit(ctx: CanvasRenderingContext2D, perihelionKm: number, aphelion
   const a = semiMajor(perihelionKm, aphelionKm)
   const le = leFromAP(a, perihelionKm)
   const b = bFromALe(a, le)
-  ellipse(ctx, 0 - scaledDistance(le), 0, scaledDistance(a), scaledDistance(b))
+  ellipse(ctx, { x: 0 - scaledDistance(le), y: 0, rx: scaledDistance(a), ry: scaledDistance(b) })
   stroke(ctx, colors.dashedLine)
   ctx.restore()
 }
@@ -60,15 +60,15 @@ function drawOrbitalElements(
   const perihelion = a - le
 
   // axes
-  dashedLine(ctx, -aphelion, 0, perihelion, 0) // x
-  dashedLine(ctx, -le, 0, -le, b) // y
+  line(ctx, { x1: -aphelion, y1: 0, x2: perihelion, y2: 0, color: colors.dashedLine, width: 3 }) // x
+  line(ctx, { x1: -le, y1: 0, x2: -le, y2: b, color: colors.dashedLine, width: 3 }) // y
 
-  line(ctx, -aphelion, -2, -le, -2, colors.semiMajor)
-  line(ctx, -le, -b, -2 * le, 0, colors.semiMajor, 1)
-  line(ctx, -le, 0, -le, -b, colors.semiMinor)
-  line(ctx, 0, -2, -le, -2, colors.linearEccentricity)
-  line(ctx, 0, 2, -aphelion, 2, colors.aphelion)
-  line(ctx, 0, 0, perihelion, 0, colors.perihelion)
+  line(ctx, { x1: -aphelion, y1: -2, x2: -le, y2: -2, color: colors.semiMajor, width: 3 })
+  line(ctx, { x1: -le, y1: -b, x2: -2 * le, y2: 0, color: colors.semiMajor, width: 1 })
+  line(ctx, { x1: -le, y1: 0, x2: -le, y2: -b, color: colors.semiMinor, width: 3 })
+  line(ctx, { x1: 0, y1: -2, x2: -le, y2: -2, color: colors.linearEccentricity, width: 3 })
+  line(ctx, { x1: 0, y1: 2, x2: -aphelion, y2: 2, color: colors.aphelion, width: 3 })
+  line(ctx, { x1: 0, y1: 0, x2: perihelion, y2: 0, color: colors.perihelion, width: 3 })
 }
 
 export { drawMeanOrbit, drawMeanPositionedBody, drawOrbit, drawOrbitalElements }

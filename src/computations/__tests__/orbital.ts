@@ -1,6 +1,5 @@
-import { bFromALe, leFromAB, oe, semiMajor } from '../orbital'
-
 import planets from '../../../data/planets.json'
+import { bFromALe, leFromAB, oe, semiMajor } from '../orbital'
 
 describe('orbital', () => {
   describe('leFromAB', () => {

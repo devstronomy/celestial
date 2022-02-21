@@ -1,8 +1,9 @@
-import Scene from './scene'
+import { CanvasInfo } from '@devstronomy/canvas'
+
 import Planet from '../planet'
 import { planets } from '../planets'
-import { CanvasInfo } from '../types'
 import { drawSun } from '../sun'
+import Scene from './scene'
 
 class SolarSystemScene extends Scene {
   // TODO: hide outer planets until having a meaningful way to display them. E.g., zooming.

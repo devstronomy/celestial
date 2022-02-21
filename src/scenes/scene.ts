@@ -1,4 +1,4 @@
-import { CanvasInfo } from '../types'
+import { CanvasInfo } from '@devstronomy/canvas'
 
 abstract class Scene {
   private readonly startMs: number

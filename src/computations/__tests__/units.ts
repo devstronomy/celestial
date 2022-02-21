@@ -1,5 +1,5 @@
-import { auToKm, auToKm6, km6ToAu, kmToAu } from '../units'
 import { AU_m } from '../../constants'
+import { auToKm, auToKm6, km6ToAu, kmToAu } from '../units'
 
 describe('units', () => {
   describe('kmToAu', () => {

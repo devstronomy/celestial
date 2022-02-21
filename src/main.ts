@@ -1,5 +1,6 @@
+import { CanvasInfo } from '@devstronomy/canvas'
+
 import { getHeaderElement, getStatusElement, resetStatusElement } from './dom'
-import { CanvasInfo } from './types'
 import { checkDefined } from './preconditions'
 import { EllipseScene, OrbitsTypesScene, Scene, SolarSystemScene } from './scenes'
 

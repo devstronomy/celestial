@@ -1,11 +1,12 @@
-import { CanvasInfo } from '../types'
-import { newPlanetByName } from '../planets'
-import Planet from '../planet'
-import { drawSun } from '../sun'
+import { CanvasInfo } from '@devstronomy/canvas'
+
+import * as C from '../computations'
 import { drawMeanOrbit, drawMeanPositionedBody, drawOrbit, drawOrbitalElements } from '../drawing'
+import Planet from '../planet'
+import { newPlanetByName } from '../planets'
+import { drawSun } from '../sun'
 import Scene from './scene'
 import { colors, tabularize } from './scenes'
-import * as C from '../computations'
 
 const DELTA = 0.5
 

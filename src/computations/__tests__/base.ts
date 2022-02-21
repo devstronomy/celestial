@@ -1,4 +1,4 @@
-import { randomFloat, TAU } from '../base'
+import { TAU, randomFloat } from '../base'
 
 describe('base', () => {
   describe('randomFloat', () => {
