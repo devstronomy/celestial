@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  npm: &npm
+    image: node:16
+    volumes:
+      - ./:/celestial
+    entrypoint: npm
+    working_dir: /celestial
+
+  install-dependencies:
+    <<: *npm
+    command: install
+
+  test:
+    <<: *npm
+    command: test
+
+  dev-server:
+    <<: *npm
+    ports:
+      - '8081:8081'
+    command: start
