@@ -14,7 +14,8 @@
     "url": "https://github.com/devstronomy/celestial/issues"
   },
   "scripts": {
-    "build": "webpack --config webpack.prod.js",
+    "dist:html": "webpack --config webpack.prod.js",
+    "dist:lib": "echo 'not implemented yet'",
     "clean": "rm -rf dist",
     "flush-npm": "rm -rf node_modules && npm install",
     "lint": "eslint src/**/*.[jt]s",
@@ -30,28 +31,12 @@
     "@devstronomy/canvas": "0.1.0"
   },
   "devDependencies": {
-    "@types/jest": "27.4.1",
-    "@typescript-eslint/eslint-plugin": "5.15.0",
-    "@typescript-eslint/parser": "5.15.0",
+    "@devstronomy/dev-dependencies": "0.1.0",
     "css-loader": "6.7.1",
     "css-minimizer-webpack-plugin": "3.4.1",
-    "eslint": "8.11.0",
     "html-webpack-plugin": "5.5.0",
-    "import-sort-style-module": "6.0.0",
-    "jest": "27.5.1",
     "mini-css-extract-plugin": "2.6.0",
-    "npm-run-all": "4.1.5",
-    "prettier": "2.5.1",
-    "prettier-package-json": "2.6.3",
-    "prettier-plugin-import-sort": "0.0.7",
-    "style-loader": "3.3.1",
-    "ts-jest": "27.1.3",
-    "ts-loader": "9.2.8",
-    "typescript": "4.6.2",
-    "webpack": "5.70.0",
-    "webpack-cli": "4.9.2",
-    "webpack-dev-server": "4.7.4",
-    "webpack-merge": "5.8.0"
+    "style-loader": "3.3.1"
   },
   "engines": {
     "node": "16.14.2",
