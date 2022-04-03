@@ -1,0 +1,9 @@
+#canvas-container {
+  border: 1px solid lightblue;
+  border-radius: 4px;
+  padding: 1em;
+}
+
+header {
+  text-align: center;
+}

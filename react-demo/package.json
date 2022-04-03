@@ -1,0 +1,26 @@
+{
+  "name": "@devstronomy/celestial-react-demo",
+  "version": "0.1.0",
+  "description": "React demo for Celestial components.",
+  "license": "MIT",
+  "author": "Martin Krauskopf <martin.krauskopf@gmail.com> (https://devstronomy.com/)",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack serve --open",
+    "prettier": "prettier -c src && prettier-package-json -l ./package.json",
+    "prettier:fix": "prettier -w src && prettier-package-json --write ./package.json"
+  },
+  "dependencies": {
+    "react": "18.0.0",
+    "react-dom": "18.0.0"
+  },
+  "devDependencies": {
+    "@devstronomy/dev-dependencies": "0.1.0",
+    "@types/react": "17.0.43",
+    "@types/react-dom": "17.0.14"
+  },
+  "engines": {
+    "node": "16.14.2",
+    "npm": "8.5.0"
+  }
+}
