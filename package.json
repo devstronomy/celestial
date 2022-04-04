@@ -14,13 +14,12 @@
     "url": "https://github.com/devstronomy/celestial/issues"
   },
   "scripts": {
-    "dist:html": "webpack --config webpack.prod.js",
-    "dist:lib": "echo 'not implemented yet'",
+    "dist": "webpack --config webpack.prod.js",
     "clean": "rm -rf dist",
     "flush-npm": "rm -rf node_modules && npm install",
     "lint": "eslint src/**/*.[jt]s",
     "lint:fix": "eslint --fix src/**/*.[jt]s",
-    "start": "webpack serve --open --config webpack.dev.js",
+    "start": "webpack serve --config webpack.dev.js",
     "test": "jest",
     "test:coverage": "jest --collect-coverage",
     "test:watch": "jest --watchAll",
@@ -28,10 +27,14 @@
     "prettier:fix": "prettier -w src && prettier-package-json --write ./package.json"
   },
   "dependencies": {
-    "@devstronomy/canvas": "0.1.0"
+    "@devstronomy/canvas": "0.1.0",
+    "react": "18.0.0",
+    "react-dom": "18.0.0"
   },
   "devDependencies": {
     "@devstronomy/dev-dependencies": "0.1.0",
+    "@types/react": "17.0.43",
+    "@types/react-dom": "17.0.14",
     "css-loader": "6.7.1",
     "css-minimizer-webpack-plugin": "3.4.1",
     "html-webpack-plugin": "5.5.0",

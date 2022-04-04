@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client'
 
-import { Canvas } from './Canvas'
+import Canvas from './Canvas'
 
 const container = document.getElementById('canvas-container')
 if (container === null) {

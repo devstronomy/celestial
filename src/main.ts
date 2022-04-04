@@ -1,45 +1,50 @@
+import './style.css'
+
 import { CanvasInfo } from '@devstronomy/canvas'
 
-import { getHeaderElement, getStatusElement, resetStatusElement } from './dom'
+import { getStatusElement, resetStatusElement } from './dom'
 import { checkDefined } from './preconditions'
 import { EllipseScene, OrbitsTypesScene, Scene, SolarSystemScene } from './scenes'
+import { SceneType } from './types'
+import type { Celestial } from './types'
 
-function removeLoadingIndicator() {
-  (document.getElementById('loading-indicator') as HTMLElement).style.display = 'none'
+type CelestialState = {
+  sceneType: SceneType
 }
 
-function getSelectedSceneType(): string {
-  const element = document.querySelector('input[name="scene-type"]:checked') as HTMLInputElement
-  return element.value
-}
-
-let currentSceneType: string
+let currentSceneType: SceneType
 let currentScene: Scene
 
-function getScene() {
-  const selectedSceneType = getSelectedSceneType()
+function getScene(selectedSceneType: SceneType) {
   if (selectedSceneType !== currentSceneType) {
     resetStatusElement()
     currentSceneType = selectedSceneType
-    if (selectedSceneType === 'mean-orbits') {
-      getHeaderElement().innerHTML = 'Simulation of the Solar System with <b>mean orbits</b>'
-      currentScene = new SolarSystemScene()
-    } else if (selectedSceneType === 'orbits-types') {
-      getHeaderElement().innerHTML = 'Shows different type of planetary orbits'
-      currentScene = new OrbitsTypesScene(getStatusElement())
-    } else if (selectedSceneType === 'ellipse') {
-      getHeaderElement().innerHTML = 'Basic <b>Ellipse</b> Terminology'
-      currentScene = new EllipseScene(getStatusElement())
-    } else {
-      throw new Error(`Unknown scene type: ${selectedSceneType}`)
+    switch (selectedSceneType) {
+      case SceneType.Ellipse:
+        // TODO: MK: fix me and the same comment below
+        // getHeaderElement().innerHTML = 'Basic <b>Ellipse</b> Terminology'
+        currentScene = new EllipseScene(getStatusElement())
+        break
+      case SceneType.OrbitTypes:
+        // getHeaderElement().innerHTML = 'Shows different type of planetary orbits'
+        currentScene = new OrbitsTypesScene(getStatusElement())
+        break
+      case SceneType.CircularOrbits:
+        // getHeaderElement().innerHTML = 'Simulation of the Solar System with <b>mean orbits</b>'
+        currentScene = new SolarSystemScene()
+        break
+      default:
+        throw new Error(`Unknown scene type: ${selectedSceneType}`)
     }
   }
   return currentScene
 }
 
-function startSimulation() {
-  const canvas = document.getElementById('canvas') as HTMLCanvasElement
+function startSimulation(canvas: HTMLCanvasElement): Celestial {
   const ctx = checkDefined(canvas.getContext('2d'), 'canvas context')
+  const state: CelestialState = {
+    sceneType: SceneType.OrbitTypes,
+  }
 
   const adjustCanvas = (canvasInfo: CanvasInfo) => {
     // Lookup the size the browser is displaying the canvas.
@@ -75,13 +80,21 @@ function startSimulation() {
     // draw the scene
     ctx.save()
     ctx.translate(canvas.width / 2, canvas.height / 2)
-    getScene().render(canvasInfo)
+    getScene(state.sceneType).render(canvasInfo)
     ctx.restore()
     requestAnimationFrame(mainLoop)
   }
 
-  removeLoadingIndicator()
   mainLoop()
+
+  return {
+    setSceneType: (type: SceneType) => {
+      console.log(`%cMK: setSceneType(${type})`, 'font-weight: bold')
+      state.sceneType = type
+    },
+  }
 }
 
-window.onload = startSimulation
+export { startSimulation }
+// TODO: MK: remove
+// window.onload = startSimulation
