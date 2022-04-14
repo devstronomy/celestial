@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { startSimulation } from '../main'
 import { Celestial, SceneType } from '../types'
 
-const defaultSceneType = SceneType.CircularOrbits
+const defaultSceneType = SceneType.OrbitTypes
 
 const CelestialCanvas = () => {
   console.log('%cMK: CelestialCanvas()', 'font-weight: bold')

@@ -14,8 +14,8 @@ type CelestialState = {
 }
 
 let state: CelestialState = {
-  sceneType: SceneType.CircularOrbits,
-  scene: createScene(SceneType.CircularOrbits),
+  sceneType: SceneType.OrbitTypes,
+  scene: createScene(SceneType.OrbitTypes),
 }
 
 function changeSceneType(newType: SceneType, canvasInfo: CanvasInfo): void {
