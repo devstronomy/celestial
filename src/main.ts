@@ -1,100 +1,81 @@
 import './style.css'
 
-import { CanvasInfo } from '@devstronomy/canvas'
+import { CanvasInfo, initializeCanvas } from '@devstronomy/canvas'
 
 import { getStatusElement, resetStatusElement } from './dom'
-import { checkDefined } from './preconditions'
+import { check } from './preconditions'
 import { EllipseScene, OrbitsTypesScene, Scene, SolarSystemScene } from './scenes'
-import { SceneType } from './types'
 import type { Celestial } from './types'
+import { SceneType } from './types'
 
 type CelestialState = {
   sceneType: SceneType
+  scene: Scene
 }
 
-let currentSceneType: SceneType
-let currentScene: Scene
-
-function getScene(selectedSceneType: SceneType) {
-  if (selectedSceneType !== currentSceneType) {
-    resetStatusElement()
-    currentSceneType = selectedSceneType
-    switch (selectedSceneType) {
-      case SceneType.Ellipse:
-        // TODO: MK: fix me and the same comment below
-        // getHeaderElement().innerHTML = 'Basic <b>Ellipse</b> Terminology'
-        currentScene = new EllipseScene(getStatusElement())
-        break
-      case SceneType.OrbitTypes:
-        // getHeaderElement().innerHTML = 'Shows different type of planetary orbits'
-        currentScene = new OrbitsTypesScene(getStatusElement())
-        break
-      case SceneType.CircularOrbits:
-        // getHeaderElement().innerHTML = 'Simulation of the Solar System with <b>mean orbits</b>'
-        currentScene = new SolarSystemScene()
-        break
-      default:
-        throw new Error(`Unknown scene type: ${selectedSceneType}`)
-    }
-  }
-  return currentScene
+let state: CelestialState = {
+  sceneType: SceneType.CircularOrbits,
+  scene: createScene(SceneType.CircularOrbits),
 }
 
-function startSimulation(canvas: HTMLCanvasElement): Celestial {
-  const ctx = checkDefined(canvas.getContext('2d'), 'canvas context')
-  const state: CelestialState = {
-    sceneType: SceneType.OrbitTypes,
+function changeSceneType(newType: SceneType, canvasInfo: CanvasInfo): void {
+  console.log('%cMK: changeSceneType()', 'font-weight: bold')
+
+  // stop current scene
+  if (!state.scene.isStatic) {
+    canvasInfo.stopLoop()
   }
 
-  const adjustCanvas = (canvasInfo: CanvasInfo) => {
-    // Lookup the size the browser is displaying the canvas.
-    const displayWidth = canvas.clientWidth
-    const displayHeight = canvas.clientHeight
-
-    // Check if the canvas is not the same size and possibly adjust.
-    if (canvas.width !== displayWidth || canvas.height !== displayHeight) {
-      canvas.width = displayWidth
-      canvas.height = displayHeight
-      return {
-        ...canvasInfo,
-        width: displayWidth,
-        height: displayHeight,
-      }
-    }
-    return canvasInfo
+  state = {
+    sceneType: newType,
+    scene: createScene(newType),
   }
 
-  let canvasInfo: CanvasInfo = {
-    canvas,
-    ctx,
-    width: 0,
-    height: 0,
+  state.scene.initialize(canvasInfo)
+}
+
+function createScene(selectedSceneType: SceneType) {
+  resetStatusElement()
+  switch (selectedSceneType) {
+    case SceneType.Ellipse:
+      return new EllipseScene(getStatusElement())
+      break
+    case SceneType.OrbitTypes:
+      return new OrbitsTypesScene(getStatusElement())
+      break
+    case SceneType.CircularOrbits:
+      return new SolarSystemScene()
+      break
+    default:
+      throw new Error(`Unknown scene type: ${selectedSceneType}`)
   }
+}
 
-  function mainLoop() {
-    // prepare canvas
-    canvasInfo = adjustCanvas(canvasInfo)
-    ctx.fillStyle = 'black'
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
+function drawScene(ci: CanvasInfo): void {
+  // prepare canvas
+  ci.ctx.fillStyle = 'black'
+  ci.ctx.fillRect(0, 0, ci.canvas.width, ci.canvas.height)
 
-    // draw the scene
-    ctx.save()
-    ctx.translate(canvas.width / 2, canvas.height / 2)
-    getScene(state.sceneType).render(canvasInfo)
-    ctx.restore()
-    requestAnimationFrame(mainLoop)
+  // draw the scene
+  ci.ctx.save()
+  ci.ctx.translate(ci.canvas.width / 2, ci.canvas.height / 2)
+  state.scene.render(ci)
+  ci.ctx.restore()
+}
+
+function startSimulation(canvasElement: HTMLCanvasElement, sceneType: SceneType): Celestial {
+  state = {
+    sceneType,
+    scene: createScene(sceneType),
   }
-
-  mainLoop()
+  const canvasInfo = initializeCanvas(canvasElement, drawScene)
+  check(canvasInfo.width > 0, `canvasInfo.width = ${canvasInfo.width}`)
+  check(canvasInfo.height > 0, `canvasInfo.height = ${canvasInfo.height}`)
+  state.scene.initialize(canvasInfo)
 
   return {
-    setSceneType: (type: SceneType) => {
-      console.log(`%cMK: setSceneType(${type})`, 'font-weight: bold')
-      state.sceneType = type
-    },
+    changeSceneType: (newType: SceneType) => changeSceneType(newType, canvasInfo),
   }
 }
 
 export { startSimulation }
-// TODO: MK: remove
-// window.onload = startSimulation

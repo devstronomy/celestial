@@ -3,23 +3,26 @@ import { useEffect, useRef, useState } from 'react'
 import { startSimulation } from '../main'
 import { Celestial, SceneType } from '../types'
 
+const defaultSceneType = SceneType.CircularOrbits
+
 const CelestialCanvas = () => {
   console.log('%cMK: CelestialCanvas()', 'font-weight: bold')
   const [celestial, setCelestial] = useState<Celestial | null>(null)
+  const [scene, setScene] = useState<SceneType>(defaultSceneType)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const loading = celestial == null
 
   useEffect(() => {
     console.log('MK: starting simulation')
     if (canvasRef.current != null) {
-      const simulation = startSimulation(canvasRef.current)
+      const simulation = startSimulation(canvasRef.current, defaultSceneType)
       setCelestial(simulation)
     }
   }, [canvasRef])
 
-  const setScene = (scene: SceneType) => {
-    celestial?.setSceneType(scene)
-  }
+  useEffect(() => {
+    celestial?.changeSceneType(scene)
+  }, [scene, celestial])
 
   return (
     <>
@@ -28,6 +31,20 @@ const CelestialCanvas = () => {
         {loading && (
           <div id="header" className="box">
             Loading...
+          </div>
+        )}
+
+        {scene === SceneType.CircularOrbits ? (
+          <div id="header" className="box">
+            Simulation of the Solar System with <b>mean orbits</b>{' '}
+          </div>
+        ) : scene === SceneType.Ellipse ? (
+          <div id="header" className="box">
+            Basic <b>Ellipse</b> Terminology{' '}
+          </div>
+        ) : (
+          <div id="header" className="box">
+            Shows different type of planetary orbits
           </div>
         )}
 

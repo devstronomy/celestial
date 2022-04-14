@@ -24,7 +24,7 @@ type PlanetData = Readonly<{
 }>
 
 type Celestial = Readonly<{
-  setSceneType: (sceneType: SceneType) => void
+  changeSceneType: (sceneType: SceneType) => void
 }>
 
 enum SceneType {
