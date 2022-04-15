@@ -1,8 +1,7 @@
 {
-  "private": true,
   "name": "@devstronomy/celestial",
-  "version": "0.2.0",
-  "description": "Playground so far.",
+  "version": "0.2.0-beta1",
+  "description": "Library providing Celestial components.",
   "license": "MIT",
   "author": "Martin Krauskopf <martin.krauskopf@gmail.com> (https://devstronomy.com/)",
   "homepage": "https://devstronomy.com",
@@ -32,7 +31,7 @@
   },
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@devstronomy/canvas": "file:../../devstronomy-canvas/devstronomy-canvas-0.2.0.tgz",
+    "@devstronomy/canvas": "0.2.1",
     "react": "18.0.0",
     "react-dom": "18.0.0"
   },
