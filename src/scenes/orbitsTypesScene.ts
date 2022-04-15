@@ -26,7 +26,7 @@ class OrbitsTypesScene extends Scene {
   }
 
   constructor(private readonly statusEl: HTMLElement) {
-    super()
+    super(false)
     this.planetInfo = {
       aphelionKm6: C.auToKm6(this.planet.aphelionAu),
       perihelionKm6: C.auToKm6(this.planet.perihelionAu),

@@ -1,7 +1,7 @@
 import type { Color } from '@devstronomy/canvas'
 
-import planetsData from '../data/planets.json'
 import { km6ToAu } from './computations'
+import planetsData from './data/planets.json'
 import Planet from './planet'
 import { checkDefined } from './preconditions'
 import { PlanetData } from './types'

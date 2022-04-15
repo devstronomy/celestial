@@ -4,13 +4,13 @@
 
 root_dir=`realpath "$(dirname "$0")/.."`
 devstronomy_canvas_dir="$root_dir/../../devstronomy-canvas"
-version="0.1.0"
+version="0.2.1"
 
 set -xeuo pipefail
 
 cd "$devstronomy_canvas_dir"
 
-npm run clean:build
+npm run clean:dist
 npm pack
 
 cd "$root_dir"

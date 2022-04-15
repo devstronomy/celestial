@@ -1,10 +1,3 @@
-html,
-body {
-  margin: 0;
-  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  background-color: black;
-}
-
 #loading-indicator {
   position: fixed;
   width: 100%;
@@ -21,11 +14,6 @@ body {
   align-content: center;
   flex-direction: column;
   text-align: center;
-}
-
-#canvas {
-  width: 100vw;
-  height: 100vh;
 }
 
 #textContainer {

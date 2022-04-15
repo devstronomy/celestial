@@ -23,4 +23,16 @@ type PlanetData = Readonly<{
   hasGlobalMagneticField: boolean
 }>
 
-export type { PlanetData }
+type Celestial = Readonly<{
+  changeSceneType: (sceneType: SceneType) => void
+  endSimulation: () => void
+}>
+
+enum SceneType {
+  Ellipse,
+  OrbitTypes,
+  CircularOrbits,
+}
+
+export type { Celestial, PlanetData }
+export { SceneType }

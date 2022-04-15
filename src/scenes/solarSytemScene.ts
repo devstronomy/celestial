@@ -10,7 +10,7 @@ class SolarSystemScene extends Scene {
   private readonly planets: Readonly<Planet>[] = planets.slice(0, 4)
 
   constructor() {
-    super()
+    super(false)
   }
 
   render({ ctx }: CanvasInfo): void {

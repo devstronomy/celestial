@@ -11,7 +11,7 @@ class EllipseScene extends Scene {
   private oe = 0 // orbital eccentricity
 
   constructor(private readonly statusEl: HTMLElement) {
-    super()
+    super(true)
   }
 
   updateStatus() {
