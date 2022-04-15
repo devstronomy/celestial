@@ -19,8 +19,6 @@ let state: CelestialState = {
 }
 
 function changeSceneType(newType: SceneType, canvasInfo: CanvasInfo): void {
-  console.log('%cMK: changeSceneType()', 'font-weight: bold')
-
   // stop current scene
   if (!state.scene.isStatic) {
     canvasInfo.stopLoop()
@@ -75,6 +73,10 @@ function startSimulation(canvasElement: HTMLCanvasElement, sceneType: SceneType)
 
   return {
     changeSceneType: (newType: SceneType) => changeSceneType(newType, canvasInfo),
+    endSimulation: () => {
+      canvasInfo.stopLoop()
+      canvasInfo.destroy()
+    },
   }
 }
 

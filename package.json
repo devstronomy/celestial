@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@devstronomy/celestial",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Playground so far.",
   "license": "MIT",
   "author": "Martin Krauskopf <martin.krauskopf@gmail.com> (https://devstronomy.com/)",
@@ -13,10 +13,14 @@
   "bugs": {
     "url": "https://github.com/devstronomy/celestial/issues"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "dist": "webpack --config webpack.prod.js",
-    "clean": "rm -rf dist",
-    "flush-npm": "rm -rf node_modules && npm install",
+    "clean": "rimraf dist",
+    "clean:dist": "run-s clean dist",
+    "dist": "tsc --project tsconfig.prod.json && cp src/style.css dist",
+    "flush-npm": "rimraf node_modules && npm install",
     "lint": "eslint src/**/*.[jt]s",
     "lint:fix": "eslint --fix src/**/*.[jt]s",
     "start": "webpack serve --config webpack.dev.js",
@@ -26,6 +30,7 @@
     "prettier": "prettier -c src && prettier-package-json -l ./package.json",
     "prettier:fix": "prettier -w src && prettier-package-json --write ./package.json"
   },
+  "types": "./dist/index.d.ts",
   "dependencies": {
     "@devstronomy/canvas": "file:../../devstronomy-canvas/devstronomy-canvas-0.2.0.tgz",
     "react": "18.0.0",
@@ -33,8 +38,8 @@
   },
   "devDependencies": {
     "@devstronomy/dev-dependencies": "0.1.0",
-    "@types/react": "17.0.43",
-    "@types/react-dom": "17.0.14",
+    "@types/react": "18.0.5",
+    "@types/react-dom": "18.0.1",
     "css-loader": "6.7.1",
     "css-minimizer-webpack-plugin": "3.4.1",
     "html-webpack-plugin": "5.5.0",
@@ -42,7 +47,10 @@
     "style-loader": "3.3.1"
   },
   "engines": {
-    "node": "16.14.2",
-    "npm": "8.5.0"
+    "node": ">=16",
+    "npm": ">=8"
+  },
+  "exports": {
+    ".": "./dist"
   }
 }

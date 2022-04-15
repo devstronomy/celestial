@@ -6,18 +6,18 @@ import { Celestial, SceneType } from '../types'
 const defaultSceneType = SceneType.OrbitTypes
 
 const CelestialCanvas = () => {
-  console.log('%cMK: CelestialCanvas()', 'font-weight: bold')
   const [celestial, setCelestial] = useState<Celestial | null>(null)
   const [scene, setScene] = useState<SceneType>(defaultSceneType)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const loading = celestial == null
 
   useEffect(() => {
-    console.log('MK: starting simulation')
     if (canvasRef.current != null) {
       const simulation = startSimulation(canvasRef.current, defaultSceneType)
       setCelestial(simulation)
+      return () => simulation.endSimulation()
     }
+    return () => ({})
   }, [canvasRef])
 
   useEffect(() => {

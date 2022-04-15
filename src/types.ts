@@ -25,6 +25,7 @@ type PlanetData = Readonly<{
 
 type Celestial = Readonly<{
   changeSceneType: (sceneType: SceneType) => void
+  endSimulation: () => void
 }>
 
 enum SceneType {

@@ -1,4 +1,4 @@
-function check<T>(condition: boolean, errorMessage: string): void {
+function check(condition: boolean, errorMessage: string): void {
   if (!condition) {
     throw new Error(errorMessage)
   }
