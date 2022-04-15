@@ -19,27 +19,19 @@ body {
   padding: 2px;
   border: 4px solid hsl(0, 60%, 60%);
   border-radius: 4px;
-  /* display: flex;
-  flex-direction: column; */
   overflow: hidden;
 }
 
 main {
-  /* display: flex;
-  flex-grow: 1; */
-
   border: 4px solid hsl(120, 60%, 60%);
   border-radius: 4px;
   box-sizing: border-box;
 }
 
 #canvas-container {
-  /* flex-grow: 1; */
-
   /* TODO: Hack. I did not find a better way. There were always miscellaneous layout issues. */
   height: calc(100vh - 69px);
   max-height: calc(100vh - 69px);
-  /* max-width: calc(100vw - 108px);  */
 
   border: 4px solid hsl(220, 60%, 60%);
   border-radius: 4px;
