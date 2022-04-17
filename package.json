@@ -36,7 +36,7 @@
     "react-dom": "18.0.0"
   },
   "devDependencies": {
-    "@devstronomy/dev-dependencies": "0.1.0",
+    "@devstronomy/dev-dependencies": "0.2.0",
     "@types/react": "18.0.5",
     "@types/react-dom": "18.0.1",
     "css-loader": "6.7.1",
