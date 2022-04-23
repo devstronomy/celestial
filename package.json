@@ -31,7 +31,7 @@
   },
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@devstronomy/canvas": "0.3.0",
+    "@devstronomy/canvas": "0.3.1",
     "react": "18.0.0",
     "react-dom": "18.0.0"
   },

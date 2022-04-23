@@ -31,7 +31,7 @@ type Celestial = Readonly<{
 enum SceneType {
   Ellipse,
   OrbitTypes,
-  CircularOrbits,
+  SolarSystem,
 }
 
 export type { Celestial, PlanetData }

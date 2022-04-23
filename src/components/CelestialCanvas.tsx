@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { startSimulation } from '../main'
 import { Celestial, SceneType } from '../types'
 
-const defaultSceneType = SceneType.OrbitTypes
+const defaultSceneType = SceneType.SolarSystem
 
 const CelestialCanvas = () => {
   const [celestial, setCelestial] = useState<Celestial | null>(null)
@@ -34,7 +34,7 @@ const CelestialCanvas = () => {
           </div>
         )}
 
-        {scene === SceneType.CircularOrbits ? (
+        {scene === SceneType.SolarSystem ? (
           <div id="header" className="box">
             Simulation of the Solar System with <b>mean orbits</b>{' '}
           </div>
@@ -64,20 +64,20 @@ const CelestialCanvas = () => {
             type="radio"
             name="scene-type"
             value="orbits-types"
-            defaultChecked
             onClick={() => setScene(SceneType.OrbitTypes)}
           />
           <label htmlFor="orbits-types">Orbits Types</label>
           <br />
 
           <input
-            id="mean-orbits"
+            id="solar-system"
             type="radio"
             name="scene-type"
-            value="mean-orbits"
-            onClick={() => setScene(SceneType.CircularOrbits)}
+            value="solar-system"
+            defaultChecked
+            onClick={() => setScene(SceneType.SolarSystem)}
           />
-          <label htmlFor="mean-orbits">Circular Orbits</label>
+          <label htmlFor="solar-system">Solar System</label>
         </form>
         <div id="statusContainer" className="ib boxPlain">
           <span id="status"></span>

@@ -14,8 +14,8 @@ type CelestialState = {
 }
 
 let state: CelestialState = {
-  sceneType: SceneType.OrbitTypes,
-  scene: createScene(SceneType.OrbitTypes),
+  sceneType: SceneType.SolarSystem,
+  scene: createScene(SceneType.SolarSystem),
 }
 
 function changeSceneType(newType: SceneType, canvasInfo: CanvasInfo): void {
@@ -41,7 +41,7 @@ function createScene(selectedSceneType: SceneType) {
     case SceneType.OrbitTypes:
       return new OrbitsTypesScene(getStatusElement())
       break
-    case SceneType.CircularOrbits:
+    case SceneType.SolarSystem:
       return new SolarSystemScene()
       break
     default:
@@ -61,7 +61,7 @@ function startSimulation(canvasElement: HTMLCanvasElement, sceneType: SceneType)
     sceneType,
     scene: createScene(sceneType),
   }
-  const canvasInfo = initializeCanvas(canvasElement, drawScene)
+  const canvasInfo = initializeCanvas(canvasElement, drawScene, { zoomMin: 0.05 })
 
   // Uncomment to show debugbox. Use switcher when implemented.
   // canvasInfo.showDebugBox()
