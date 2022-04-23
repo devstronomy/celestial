@@ -13,14 +13,14 @@ const color: (r: number, g: number, b: number) => Color = (r, g, b) => ({
 })
 
 const planetColors: Record<string, Color> = {
-  Mercury: color(224, 194, 150),
-  Venus: color(145, 77, 19),
-  Earth: color(171, 227, 254),
-  Mars: color(97, 51, 35),
-  Jupiter: color(180, 180, 180),
-  Saturn: color(180, 180, 180),
-  Uranus: color(180, 180, 180),
-  Neptune: color(180, 180, 180),
+  Mercury: color(172, 175, 175),
+  Venus: color(252, 131, 10),
+  Earth: color(15, 120, 243),
+  Mars: color(238, 0, 10),
+  Jupiter: color(187, 98, 6),
+  Saturn: color(255, 207, 162),
+  Uranus: color(37, 255, 252),
+  Neptune: color(8, 67, 241),
   Pluto: color(180, 180, 180),
 }
 
