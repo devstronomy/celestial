@@ -3,8 +3,8 @@
 # Helper script for quick testing '@devstronomy/canvas' locally before publishing.
 
 root_dir=`realpath "$(dirname "$0")/.."`
-devstronomy_canvas_dir="$root_dir/../../devstronomy-canvas"
-version="0.2.1"
+devstronomy_canvas_dir="$root_dir/../canvas"
+version="0.3.0"
 
 set -xeuo pipefail
 

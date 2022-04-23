@@ -50,11 +50,6 @@ function createScene(selectedSceneType: SceneType) {
 }
 
 function drawScene(ci: CanvasInfo): void {
-  // prepare canvas
-  ci.ctx.fillStyle = 'black'
-  ci.ctx.fillRect(0, 0, ci.canvas.width, ci.canvas.height)
-
-  // draw the scene
   ci.ctx.save()
   ci.ctx.translate(ci.canvas.width / 2, ci.canvas.height / 2)
   state.scene.render(ci)
@@ -67,6 +62,10 @@ function startSimulation(canvasElement: HTMLCanvasElement, sceneType: SceneType)
     scene: createScene(sceneType),
   }
   const canvasInfo = initializeCanvas(canvasElement, drawScene)
+
+  // Uncomment to show debugbox. Use switcher when implemented.
+  canvasInfo.showDebugBox()
+
   check(canvasInfo.width > 0, `canvasInfo.width = ${canvasInfo.width}`)
   check(canvasInfo.height > 0, `canvasInfo.height = ${canvasInfo.height}`)
   state.scene.initialize(canvasInfo)
