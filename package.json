@@ -1,6 +1,6 @@
 {
   "name": "@devstronomy/celestial",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Library providing Celestial components.",
   "license": "MIT",
   "author": "Martin Krauskopf <martin.krauskopf@gmail.com> (https://devstronomy.com/)",
@@ -31,14 +31,14 @@
   },
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@devstronomy/canvas": "0.2.1",
+    "@devstronomy/canvas": "0.3.0",
     "react": "18.0.0",
     "react-dom": "18.0.0"
   },
   "devDependencies": {
     "@devstronomy/dev-dependencies": "0.2.0",
-    "@types/react": "18.0.5",
-    "@types/react-dom": "18.0.1",
+    "@types/react": "18.0.6",
+    "@types/react-dom": "18.0.2",
     "css-loader": "6.7.1",
     "css-minimizer-webpack-plugin": "3.4.1",
     "html-webpack-plugin": "5.5.0",
