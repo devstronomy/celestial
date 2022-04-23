@@ -64,7 +64,7 @@ function startSimulation(canvasElement: HTMLCanvasElement, sceneType: SceneType)
   const canvasInfo = initializeCanvas(canvasElement, drawScene)
 
   // Uncomment to show debugbox. Use switcher when implemented.
-  canvasInfo.showDebugBox()
+  // canvasInfo.showDebugBox()
 
   check(canvasInfo.width > 0, `canvasInfo.width = ${canvasInfo.width}`)
   check(canvasInfo.height > 0, `canvasInfo.height = ${canvasInfo.height}`)
