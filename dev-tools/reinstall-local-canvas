@@ -2,9 +2,9 @@
 
 # Helper script for quick testing '@devstronomy/canvas' locally before publishing.
 
-root_dir=`realpath "$(dirname "$0")/.."`
-devstronomy_canvas_dir="$root_dir/../canvas"
-version="0.3.2-alpha.1"
+git_root_dir=`realpath "$(dirname "$0")/.."`
+devstronomy_canvas_dir="$git_root_dir/../canvas"
+version="0.4.0-alpha.1"
 
 set -xeuo pipefail
 
@@ -13,6 +13,7 @@ cd "$devstronomy_canvas_dir"
 npm run clean:dist
 npm pack
 
-cd "$root_dir"
+cd "$git_root_dir"
 
+rm -rf "$git_root_dir/node_modules/@devstronomy/canvas"
 npm install -SE "$devstronomy_canvas_dir/devstronomy-canvas-$version.tgz"
