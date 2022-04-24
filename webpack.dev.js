@@ -7,7 +7,7 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     static: './demo/public',
-    port: 8081,
+    port: 8082,
   },
   resolve: {
     extensions: ['.ts', '.tsx', '...'],
