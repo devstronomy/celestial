@@ -51,7 +51,7 @@ function createScene(selectedSceneType: SceneType) {
 
 function drawScene(ci: CanvasInfo): void {
   ci.ctx.save()
-  ci.ctx.translate(ci.canvas.width / 2, ci.canvas.height / 2)
+  ci.ctx.translate(ci.width / 2, ci.height / 2)
   state.scene.render(ci)
   ci.ctx.restore()
 }
