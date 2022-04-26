@@ -2,7 +2,8 @@
 
 ## [0.4.0] - ????-??-??
 
-- Bump up to `@devstronomy/canvas@0.4.0`
+- Keep orbits visible on any zoom level.
+- Bump up to `@devstronomy/canvas@0.4.0`.
 - Show all planets.
 - Tweak zoom boundaries for the Solar System.
 - Better colors for planets.

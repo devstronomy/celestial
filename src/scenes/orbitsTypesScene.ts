@@ -44,7 +44,7 @@ class OrbitsTypesScene extends Scene {
     ])
   }
 
-  render({ ctx }: CanvasInfo) {
+  render(ci: CanvasInfo) {
     const p = this.planetInfo
     if (p.aphelionKm6 > C.auToKm6(1.85)) {
       this.delta = -DELTA
@@ -60,14 +60,14 @@ class OrbitsTypesScene extends Scene {
     this.b = C.bFromALe(this.a, this.le)
     this.oe = this.le / this.a
 
-    drawOrbitalElements(ctx, C.km6ToAu(p.perihelionKm6), C.km6ToAu(p.aphelionKm6))
+    drawOrbitalElements(ci.ctx, C.km6ToAu(p.perihelionKm6), C.km6ToAu(p.aphelionKm6))
 
-    drawSun(ctx)
+    drawSun(ci.ctx)
 
-    drawMeanOrbit(ctx, this.planet)
-    drawMeanPositionedBody(ctx, this.planet)
+    drawMeanOrbit(ci, this.planet)
+    drawMeanPositionedBody(ci.ctx, this.planet)
 
-    drawOrbit(ctx, C.km6ToAu(p.perihelionKm6), C.km6ToAu(p.aphelionKm6))
+    drawOrbit(ci.ctx, C.km6ToAu(p.perihelionKm6), C.km6ToAu(p.aphelionKm6))
     this.updateStatus()
   }
 }

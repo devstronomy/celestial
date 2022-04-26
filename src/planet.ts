@@ -1,4 +1,4 @@
-import type { Color } from '@devstronomy/canvas'
+import type { CanvasInfo, Color } from '@devstronomy/canvas'
 
 import { TAU, randomFloat } from './computations'
 import conf from './config'
@@ -43,9 +43,9 @@ class Planet {
     this.thetaRad = (this.startTheta + rawTheta * conf.planets.speedFactor) % TAU
   }
 
-  draw(ctx: CanvasRenderingContext2D): void {
-    drawMeanOrbit(ctx, this)
-    drawMeanPositionedBody(ctx, this)
+  draw(ci: CanvasInfo): void {
+    drawMeanOrbit(ci, this)
+    drawMeanPositionedBody(ci.ctx, this)
   }
 }
 

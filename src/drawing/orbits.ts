@@ -1,4 +1,4 @@
-import { circle, ellipse, fillRGB, line, stroke } from '@devstronomy/canvas'
+import { CanvasInfo, circle, ellipse, fillRGB, line, stroke } from '@devstronomy/canvas'
 
 import { bFromALe, leFromAP, semiMajor } from '../computations'
 import conf from '../config'
@@ -24,13 +24,18 @@ function drawMeanPositionedBody(ctx: CanvasRenderingContext2D, planet: Readonly<
   ctx.restore()
 }
 
-function drawMeanOrbit(ctx: CanvasRenderingContext2D, { distanceAu }: Readonly<Planet>): void {
-  ctx.save()
-  ctx.beginPath()
-  ctx.setLineDash([5, 5])
-  circle(ctx, { x: 0, y: 0, r: scaledDistance(distanceAu) })
-  stroke(ctx, colors.dashedLine)
-  ctx.restore()
+function drawMeanOrbit(ci: CanvasInfo, { distanceAu }: Readonly<Planet>): void {
+  ci.ctx.save()
+  ci.ctx.beginPath()
+  circle(ci.ctx, {
+    x: 0,
+    y: 0,
+    r: scaledDistance(distanceAu),
+    color: colors.dashedLine,
+    dashed: true,
+    width: 1 / ci.zoom.level,
+  })
+  ci.ctx.restore()
 }
 
 function drawOrbit(ctx: CanvasRenderingContext2D, perihelionKm: number, aphelionKm: number): void {

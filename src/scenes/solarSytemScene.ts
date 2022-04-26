@@ -9,11 +9,11 @@ class SolarSystemScene extends Scene {
     super(false)
   }
 
-  render({ ctx }: CanvasInfo): void {
-    drawSun(ctx)
+  render(ci: CanvasInfo): void {
+    drawSun(ci.ctx)
     planets.forEach((p) => {
       p.update(super.updateInterval())
-      p.draw(ctx)
+      p.draw(ci)
     })
   }
 }
