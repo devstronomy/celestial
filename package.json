@@ -26,7 +26,7 @@
     "test": "jest",
     "test:coverage": "jest --collect-coverage",
     "test:watch": "jest --watchAll",
-    "prettier": "prettier -c src && prettier-package-json -l ./package.json",
+    "prettier:check": "prettier -c src && prettier-package-json -l ./package.json",
     "prettier:fix": "prettier -w src && prettier-package-json --write ./package.json"
   },
   "types": "./dist/index.d.ts",
