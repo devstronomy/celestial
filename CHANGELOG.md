@@ -2,6 +2,7 @@
 
 ## [0.4.0] - ????-??-??
 
+- Draw a grid based on one astronomical unit for the Solar System scene.
 - Keep orbits visible on any zoom level.
 - Bump up to `@devstronomy/canvas@0.4.0`.
 - Show all planets.
