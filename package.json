@@ -1,6 +1,6 @@
 {
   "name": "@devstronomy/celestial",
-  "version": "0.4.0-alpha.2",
+  "version": "0.4.1",
   "description": "Library providing Celestial components.",
   "license": "MIT",
   "author": "Martin Krauskopf <martin.krauskopf@gmail.com> (https://devstronomy.com/)",
@@ -22,6 +22,7 @@
     "flush-npm": "rimraf node_modules && npm install",
     "lint": "eslint src/**/*.[jt]s",
     "lint:fix": "eslint --fix src/**/*.[jt]s",
+    "prepack": "npm run clean:dist",
     "start": "webpack serve --config webpack.dev.js",
     "test": "jest",
     "test:coverage": "jest --collect-coverage",
@@ -32,17 +33,17 @@
   "types": "./dist/index.d.ts",
   "dependencies": {
     "@devstronomy/canvas": "0.4.0-alpha.2",
-    "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@devstronomy/dev-dependencies": "0.2.0",
-    "@types/react": "18.0.6",
-    "@types/react-dom": "18.0.2",
-    "css-loader": "6.7.1",
-    "css-minimizer-webpack-plugin": "3.4.1",
+    "@devstronomy/dev-dependencies": "0.3.2",
+    "@types/react": "18.0.25",
+    "@types/react-dom": "18.0.9",
+    "css-loader": "6.7.2",
+    "css-minimizer-webpack-plugin": "4.2.2",
     "html-webpack-plugin": "5.5.0",
-    "mini-css-extract-plugin": "2.6.0",
+    "mini-css-extract-plugin": "2.7.0",
     "style-loader": "3.3.1"
   },
   "engines": {
