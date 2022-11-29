@@ -20,7 +20,7 @@ npm run start
 
 ```
 npm install
-npm run build
+npm run clean:dist
 ```
 
 The resulting distribution will be compiled into the `dist` directory.
