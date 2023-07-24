@@ -1,6 +1,6 @@
 {
   "name": "@devstronomy/celestial",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Library providing Celestial components.",
   "license": "MIT",
   "author": "Martin Krauskopf <martin.krauskopf@gmail.com> (https://devstronomy.com/)",
@@ -11,6 +11,9 @@
   },
   "bugs": {
     "url": "https://github.com/devstronomy/celestial/issues"
+  },
+  "exports": {
+    ".": "./dist"
   },
   "files": [
     "dist"
@@ -23,34 +26,33 @@
     "lint": "eslint src/**/*.[jt]s",
     "lint:fix": "eslint --fix src/**/*.[jt]s",
     "prepack": "npm run clean:dist",
+    "prettier:check": "prettier -c src && prettier-package-json -l ./package.json",
+    "prettier:fix": "prettier -w src && prettier-package-json --write ./package.json",
+    "publish:dry": "npm publish --access public --dry-run",
+    "publish:npm": "npm publish --access public",
     "start": "webpack serve --config webpack.dev.js",
     "test": "jest",
     "test:coverage": "jest --collect-coverage",
-    "test:watch": "jest --watchAll",
-    "prettier:check": "prettier -c src && prettier-package-json -l ./package.json",
-    "prettier:fix": "prettier -w src && prettier-package-json --write ./package.json"
+    "test:watch": "jest --watchAll"
   },
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@devstronomy/canvas": "0.4.0-alpha.2",
+    "@devstronomy/canvas": "0.5.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@devstronomy/dev-dependencies": "0.3.2",
-    "@types/react": "18.0.25",
-    "@types/react-dom": "18.0.9",
-    "css-loader": "6.7.2",
+    "@devstronomy/dev-dependencies": "0.4.0",
+    "@types/react": "18.2.15",
+    "@types/react-dom": "18.2.7",
+    "css-loader": "6.8.1",
     "css-minimizer-webpack-plugin": "4.2.2",
-    "html-webpack-plugin": "5.5.0",
-    "mini-css-extract-plugin": "2.7.0",
-    "style-loader": "3.3.1"
+    "html-webpack-plugin": "5.5.3",
+    "mini-css-extract-plugin": "2.7.6",
+    "style-loader": "3.3.3"
   },
   "engines": {
-    "node": ">=16",
-    "npm": ">=8"
-  },
-  "exports": {
-    ".": "./dist"
+    "node": "^18",
+    "npm": "^9"
   }
 }
